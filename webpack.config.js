@@ -19,7 +19,7 @@ module.exports = {
   entry: {
     main: [
       'webpack/hot/only-dev-server',
-      './src/containers/App.js'
+      './src/components/SmartBanner.js'
     ],
     example: [
       'webpack/hot/only-dev-server',
@@ -38,7 +38,7 @@ module.exports = {
       'styles': __dirname + '/src/styles',
       'mixins': __dirname + '/src/mixins',
       'components': __dirname + '/src/components/',
-      'react-smartbanner': './containers/App.js'
+      'react-smartbanner': './components/SmartBanner.js'
     }
   },
   module: {
