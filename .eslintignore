@@ -1,0 +1,7 @@
+dist/*
+example/*
+test/*
+node_modules/*
+Gruntfile.js
+package.json
+webpack.*.js
