@@ -38,7 +38,22 @@
     "webpack-dev-server": "~1.6.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "grunt build",
+    "build-dist": "grunt build:dist",
+    "start": "grunt serve",
+    "example": "grunt serve:example",
+    "lint": "eslint ./; true",
+    "gh-pages": "grunt gh-pages",
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ],
+    "globals": {
+      "__DEV__": true
+    }
   },
   "keywords": [
     "react",
