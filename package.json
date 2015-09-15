@@ -33,6 +33,7 @@
     "react-hot-loader": "^1.0.7",
     "sass-loader": "^1.0.1",
     "style-loader": "~0.8.0",
+    "ua-parser-js": "^0.7.9",
     "url-loader": "~0.5.5",
     "webpack": "~1.4.3",
     "webpack-dev-server": "~1.6.5"
