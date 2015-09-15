@@ -1,0 +1,22 @@
+{
+  "name": "react-smartbanner",
+  "version": "1.0.0",
+  "description": "Smart app banner react version.",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "smartbanner",
+    "ios",
+    "iphone",
+    "android",
+    "windowsphone",
+    "smart",
+    "banner"
+  ],
+  "author": "patw <patw.hi@gmail.com> (http://patw.me/)",
+  "license": "MIT"
+}
