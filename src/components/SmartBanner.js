@@ -18,13 +18,9 @@ class SmartBanner extends Component {
     button: PropTypes.string,
     storeText: PropTypes.objectOf(PropTypes.string),
     price: PropTypes.objectOf(PropTypes.string),
-    force: PropTypes.string
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.force !== this.props.force) {
-      this.setType(nextProps.force);
-    }
+    force: PropTypes.string,
+    title: PropTypes.string,
+    author: PropTypes.string
   }
 
   static defaultProps = {
@@ -42,7 +38,15 @@ class SmartBanner extends Component {
       android: 'Free',
       windows: 'Free'
     },
-    force: ''
+    force: '',
+    title: '',
+    author: ''
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.force !== this.props.force) {
+      this.setType(nextProps.force);
+    }
   }
 
   type = '';
@@ -52,7 +56,7 @@ class SmartBanner extends Component {
   parseAppId() {
     let meta = document.querySelector('meta[name="' + this.settings.appMeta + '"]');
     if (!meta) {
-      return;
+      return '';
     }
 
     if (this.type === 'windows') {
@@ -106,11 +110,11 @@ class SmartBanner extends Component {
   }
 
   hide() {
-    document.querySelector("html").classList.remove('smartbanner-show');
+    document.querySelector('html').classList.remove('smartbanner-show');
   }
 
   show() {
-    document.querySelector("html").classList.add('smartbanner-show');
+    document.querySelector('html').classList.add('smartbanner-show');
   }
 
   close() {
@@ -139,7 +143,7 @@ class SmartBanner extends Component {
       return false;
     }
 
-    if (!this.parseAppId()) {
+    if (this.parseAppId() === '') {
       return false;
     }
 

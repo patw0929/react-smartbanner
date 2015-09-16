@@ -6,7 +6,7 @@ var DemoComponent = React.createClass({
   getInitialState() {
     return {
       deviceType: ''
-    }
+    };
   },
   changeType(device) {
     this.setState({
@@ -18,12 +18,8 @@ var DemoComponent = React.createClass({
     cookie.set('smartbanner-installed', null, { path: '/', expires: new Date(0) });
   },
   render() {
-    let anchorStyle = {
-      cursor: "pointer"
-    };
-
-    let navButtonStyle ={
-      marginTop: "20px"
+    let navButtonStyle = {
+      marginTop: '20px'
     };
 
     return (
