@@ -1,11 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import { default as ua } from 'ua-parser-js';
+import ua from 'ua-parser-js';
+import cookie from 'cookie-cutter';
+
+import '../styles/style.scss';
 
 class SmartBanner extends Component {
   constructor(props) {
     super(props);
 
-    this.setType();
+    this.setType(this.props.force);
   }
 
   static propTypes = {
@@ -18,10 +21,16 @@ class SmartBanner extends Component {
     force: PropTypes.string
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.force !== this.props.force) {
+      this.setType(nextProps.force);
+    }
+  }
+
   static defaultProps = {
     daysHidden: 15,
     daysReminder: 90,
-    appStoreLanguage: 'us',
+    appStoreLanguage: navigator.language.slice(-2) || navigator.userLanguage.slice(-2) || 'us',
     button: 'View',
     storeText: {
       ios: 'On the App Store',
@@ -55,7 +64,7 @@ class SmartBanner extends Component {
     return this.appId;
   }
 
-  setType() {
+  setType(deviceType) {
     let mixins = {
       ios: {
         appMeta: 'apple-itunes-app',
@@ -82,11 +91,11 @@ class SmartBanner extends Component {
 
     let agent = ua(navigator.userAgent);
 
-    if (this.props.force.length) {
-      this.type = this.props.force;
+    if (deviceType.length) {
+      this.type = deviceType;
     } else if (agent.os.name === 'Windows Phone' || agent.os.name === 'Windows Mobile') {
       this.type = 'windows';
-    //iOS >= 6 has native support for SmartAppBanner
+    //iOS >= 6 has native support for Smart Banner
     } else if (agent.os.name === 'iOS' && parseInt(agent.os.version, 10) < 6) {
       this.type = 'ios';
     } else if (agent.os.name === 'Android') {
@@ -94,18 +103,53 @@ class SmartBanner extends Component {
     }
 
     this.settings = mixins[this.type];
+  }
 
-    if (!this.parseAppId()) {
-      return;
-    }
+  hide() {
+    document.querySelector("html").classList.remove('smartbanner-show');
+  }
+
+  show() {
+    document.querySelector("html").classList.add('smartbanner-show');
+  }
+
+  close() {
+    this.hide();
+    cookie.set('smartbanner-closed', 'true', {
+      path: '/',
+      expires: +new Date() + this.props.daysHidden * 1000 * 60 * 60 * 24
+    });
+  }
+
+  install() {
+    this.hide();
+    cookie.set('smartbanner-installed', 'true', {
+      path: '/',
+      expires: +new Date() + this.props.daysReminder * 1000 * 60 * 60 * 24
+    });
   }
 
   render() {
+    // Don't show banner if device isn't iOS or Android, website is loaded in app,
+    // user dismissed banner, or we have no app id in meta
+    if (!this.type
+      || navigator.standalone
+      || cookie.get('smartbanner-closed')
+      || cookie.get('smartbanner-installed')) {
+      return false;
+    }
+
+    if (!this.parseAppId()) {
+      return false;
+    }
+
+    this.show();
+
     let link = this.settings.getStoreLink();
     let inStore = this.props.price[this.type] + ' - ' + this.props.storeText[this.type];
     let icon;
-    for (let i = 0; i < this.settings.iconRels.length; i++) {
-      let rel = document.querySelector('link[rel="' + this.settings.iconRels[i]+'"]');
+    for (let i = 0, max = this.settings.iconRels.length; i < max; i++) {
+      let rel = document.querySelector('link[rel="' + this.settings.iconRels[i] + '"]');
       if (rel) {
         icon = rel.getAttribute('href');
         break;
@@ -120,7 +164,7 @@ class SmartBanner extends Component {
     return (
       <div className={wrapperClassName}>
         <div className="smartbanner-container">
-          <a className="smartbanner-close">&times;</a>
+          <a className="smartbanner-close" onClick={::this.close}>&times;</a>
           <span className="smartbanner-icon" style={iconStyle}></span>
           <div className="smartbanner-info">
             <div className="smartbanner-title">{this.props.title}</div>
@@ -128,7 +172,7 @@ class SmartBanner extends Component {
             <span>{inStore}</span>
           </div>
 
-          <a href={link} className="smartbanner-button">
+          <a href={link} onClick={::this.install} className="smartbanner-button">
             <span className="smartbanner-button-text">{this.props.button}</span>
           </a>
         </div>
