@@ -88,6 +88,15 @@ module.exports = function (grunt) {
           {
             flatten: true,
             expand: true,
+            src: [
+              '<%= folders.src %>/icon.png'
+            ],
+            dest: '<%= folders.example %>/',
+            filter: 'isFile'
+          },
+          {
+            flatten: true,
+            expand: true,
             src: '<%= folders.src %>/styles/*',
             dest: '<%= folders.dist %>/styles/'
           }
