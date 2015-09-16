@@ -54,14 +54,82 @@ var React = require('react');
 var SmartBanner = require('react-smartbanner');
 require('./node_modules/react-smartbanner/dist/styles/style.scss');
 
-React.render(&lt;SmartBanner /&gt;, document.getElementById('content'));
+React.render(&lt;SmartBanner title={'Facebook'} /&gt;, document.getElementById('content'));
 </code></pre>
 
         <hr>
 
         <h2>Props</h2>
 
-        <p>WIP</p>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">key</th>
+                <th scope="col">default</th>
+                <th scope="col">description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">daysHidden</th>
+                <td><code>15</code></td>
+                <td>Days to hide banner after close button is clicked.</td>
+              </tr>
+              <tr>
+                <th scope="row">daysReminder</th>
+                <td><code>90</code></td>
+                <td>Days to hide banner after "VIEW" button is clicked.</td>
+              </tr>
+              <tr>
+                <th scope="row">appStoreLanguage</th>
+                <td><code>(user's browser language)</code></td>
+                <td>Language code for the App Store.</td>
+              </tr>
+              <tr>
+                <th scope="row">title</th>
+                <td><code>''</code></td>
+                <td>App title.</td>
+              </tr>
+              <tr>
+                <th scope="row">author</th>
+                <td><code>''</code></td>
+                <td>App author.</td>
+              </tr>
+              <tr>
+                <th scope="row">button</th>
+                <td><code>'View'</code></td>
+                <td>Text on install button.</td>
+              </tr>
+              <tr>
+                <th scope="row">storeText</th>
+                <td><code>{
+                  ios: 'On the App Store',
+                  android: 'In Google Play',
+                  windows: 'In Windows store'
+                }</code></td>
+                <td>Store text (object).</td>
+              </tr>
+              <tr>
+                <th scope="row">price</th>
+                <td><code>{
+                  ios: 'FREE',
+                  android: 'FREE',
+                  windows: 'FREE'
+                }</code></td>
+                <td>Price text (object).</td>
+              </tr>
+              <tr>
+                <th scope="row">force</th>
+                <td><code>''</code></td>
+                <td>
+                  Force to display in specific device.<br>
+                  (<code>android</code>, <code>ios</code>, <code>windows</code>)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <hr>
 
