@@ -7,11 +7,11 @@
   <meta name="author" content="patw" />
   <meta name="apple-itunes-app" content="app-id=284882215">
   <meta name="google-play-app" content="app-id=com.facebook.katana">
-  <meta name="msApplication-ID" content="82a23635-5bd9-df11-a844-00237de2db9e"/>
-  <meta name="msApplication-PackageFamilyName" content="facebook_9wzdncrfhv5g"/>
+  <meta name="msApplication-ID" content="82a23635-5bd9-df11-a844-00237de2db9e">
+  <meta name="msApplication-PackageFamilyName" content="facebook_9wzdncrfhv5g">
   <link rel="apple-touch-icon" href="icon.png">
-  <link rel="android-touch-icon" href="icon.png" />
-  <link rel="windows-touch-icon" href="icon.png" />
+  <link rel="android-touch-icon" href="icon.png">
+  <link rel="windows-touch-icon" href="icon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/tomorrow-night-eighties.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
@@ -47,6 +47,21 @@
         <h2>Syntax</h2>
 
         <h3>General</h3>
+
+        <p>Remember to add following meta tags in your HTML page: (Use Facebook app as example)</p>
+
+        <pre><code class="html">&lt;head&gt;
+  &lt;meta name=&quot;apple-itunes-app&quot; content=&quot;app-id=284882215&quot;&gt;
+  &lt;meta name=&quot;google-play-app&quot; content=&quot;app-id=com.facebook.katana&quot;&gt;
+  &lt;meta name=&quot;msApplication-ID&quot; content=&quot;82a23635-5bd9-df11-a844-00237de2db9e&quot;&gt;
+  &lt;meta name=&quot;msApplication-PackageFamilyName&quot; content=&quot;facebook_9wzdncrfhv5g&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;icon.png&quot;&gt;
+  &lt;link rel=&quot;android-touch-icon&quot; href=&quot;icon.png&quot;&gt;
+  &lt;link rel=&quot;windows-touch-icon&quot; href=&quot;icon.png&quot;&gt;
+&lt;/head&gt;
+</code></pre>
+
+        <p>And React-SmartBanner component usage:</p>
 
         <pre><code class="javascript">'use strict';
 

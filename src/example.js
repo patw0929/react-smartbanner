@@ -19,7 +19,7 @@ var DemoComponent = React.createClass({
   },
   render() {
     let navButtonStyle = {
-      marginTop: '20px'
+      margin: '20px 0 0 0'
     };
 
     return (
@@ -45,6 +45,8 @@ var DemoComponent = React.createClass({
                         className="btn btn-primary"
                         onClick={this.changeType.bind(this, 'windows')}>Windows Phone</button>
               </div>
+            </div>
+            <div className="btn-group btn-group-justified" role="group">
               <div className="btn-group" role="group">
                 <button type="button"
                         className="btn btn-warning"
