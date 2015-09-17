@@ -2,6 +2,13 @@
   "name": "react-smartbanner",
   "version": "1.0.0",
   "description": "Smart app banner react version.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patw0929/react-smartbanner"
+  },
+  "bugs": {
+    "url": "https://github.com/patw0929/react-smartbanner/issues"
+  },
   "main": "dist/main.js",
   "dependencies": {
     "react": "~0.13.3"
