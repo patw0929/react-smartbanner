@@ -45,16 +45,16 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'react-hot!babel-loader'
+      loader: 'react-hot!babel'
     }, {
       test: /\.scss/,
-      loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
+      loader: 'style!css!sass?outputStyle=expanded'
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      loader: 'style!css'
     }, {
       test: /\.(png|jpg|woff|woff2)$/,
-      loader: 'url-loader?limit=8192'
+      loader: 'url?limit=8192'
     }]
   },
 
