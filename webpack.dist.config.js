@@ -9,8 +9,7 @@ var webpack = require('webpack'),
 var eslintrcPath = path.resolve(__dirname, '.eslintrc');
 
 module.exports = {
-  devtool: 'eval',
-  watch: true,
+  devtool: false,
   output: {
     publicPath: './',
     path: 'dist/',
@@ -24,7 +23,23 @@ module.exports = {
   },
 
   externals: {
-    react: 'react'
+    'react': {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom'
+    }
+  },
+
+  stats: {
+    colors: true,
+    reasons: false
   },
 
   stats: {
@@ -33,6 +48,11 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -56,16 +76,10 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
-    }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      loader: 'uglify!babel'
     }, {
       test: /\.scss/,
-      loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
-    }, {
-      test: /\.(png|jpg|woff|woff2)$/,
-      loader: 'url-loader?limit=8192'
+      loader: 'style!css!sass?outputStyle=compressed'
     }]
   },
 
