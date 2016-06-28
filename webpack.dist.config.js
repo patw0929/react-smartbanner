@@ -7,6 +7,7 @@
 var webpack = require('webpack'),
     path = require('path');
 var eslintrcPath = path.resolve(__dirname, '.eslintrc');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: false,
@@ -78,14 +79,8 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'uglify!babel'
     }, {
-      test: /\.css$/,
-      loader: 'style!css'
-    }, {
       test: /\.scss/,
-      loader: 'style!css!sass?outputStyle=expanded'
-    }, {
-      test: /\.(png|jpg|woff|woff2)$/,
-      loader: 'url?limit=8192'
+      loader: ExtractTextPlugin.extract('style', 'css!sass?outputStyle=expanded')
     }]
   },
 
