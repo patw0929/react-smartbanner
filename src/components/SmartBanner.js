@@ -8,7 +8,11 @@ class SmartBanner extends Component {
   constructor(props) {
     super(props);
 
-    this.setType(this.props.force);
+    this.state = {
+      type: '',
+      appId: '',
+      settings: {},
+    };
   }
 
   static propTypes = {
@@ -20,27 +24,32 @@ class SmartBanner extends Component {
     price: PropTypes.objectOf(PropTypes.string),
     force: PropTypes.string,
     title: PropTypes.string,
-    author: PropTypes.string
-  }
+    author: PropTypes.string,
+  };
 
   static defaultProps = {
     daysHidden: 15,
     daysReminder: 90,
-    appStoreLanguage: navigator.language.slice(-2) || navigator.userLanguage.slice(-2) || 'us',
+    appStoreLanguage: window.navigator.language.slice(-2) ||
+      window.navigator.userLanguage.slice(-2) || 'us',
     button: 'View',
     storeText: {
       ios: 'On the App Store',
       android: 'In Google Play',
-      windows: 'In Windows Store'
+      windows: 'In Windows Store',
     },
     price: {
       ios: 'Free',
       android: 'Free',
-      windows: 'Free'
+      windows: 'Free',
     },
     force: '',
     title: '',
-    author: ''
+    author: '',
+  };
+
+  componentWillMount() {
+    this.setType(this.props.force);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,79 +58,96 @@ class SmartBanner extends Component {
     }
   }
 
-  type = '';
-  appId = '';
-  settings = {};
+  setType(deviceType) {
+    const agent = ua(window.navigator.userAgent);
+    let type = '';
+
+    if (deviceType) { // force set case
+      type = deviceType;
+    } else if (agent.os.name === 'Windows Phone' || agent.os.name === 'Windows Mobile') {
+      type = 'windows';
+    // iOS >= 6 has native support for Smart Banner
+    } else if (agent.os.name === 'iOS' && parseInt(agent.os.version, 10) < 6) {
+      type = 'ios';
+    } else if (agent.os.name === 'Android') {
+      type = 'android';
+    }
+
+    this.setState({
+      type,
+    }, () => {
+      if (type) {
+        this.setSettingsByType();
+      }
+    });
+  }
 
   parseAppId() {
-    let meta = document.querySelector('meta[name="' + this.settings.appMeta + '"]');
+    const meta = window.document.querySelector(
+      `meta[name="${this.state.settings.appMeta}"]`);
+
     if (!meta) {
       return '';
     }
 
-    if (this.type === 'windows') {
-      this.appId = meta.getAttribute('content');
+    let appId = '';
+    if (this.state.type === 'windows') {
+      appId = meta.getAttribute('content');
     } else {
-      this.appId = /app-id=([^\s,]+)/.exec(meta.getAttribute('content'))[1];
+      appId = /app-id=([^\s,]+)/.exec(meta.getAttribute('content'))[1];
     }
 
-    return this.appId;
+    this.setState({
+      appId,
+    });
+
+    return appId;
   }
 
-  setType(deviceType) {
-    let mixins = {
+  setSettingsByType() {
+    const mixins = {
       ios: {
         appMeta: 'apple-itunes-app',
         iconRels: ['apple-touch-icon-precomposed', 'apple-touch-icon'],
-        getStoreLink: () => {
-          return 'https://itunes.apple.com/' + this.props.appStoreLanguage + '/app/id' + this.appId;
-        }
+        getStoreLink: () =>
+          `https://itunes.apple.com/${this.props.appStoreLanguage}/app/id`,
       },
       android: {
         appMeta: 'google-play-app',
         iconRels: ['android-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
-        getStoreLink: () => {
-          return 'http://play.google.com/store/apps/details?id=' + this.appId;
-        }
+        getStoreLink: () =>
+          'http://play.google.com/store/apps/details?id=',
       },
       windows: {
         appMeta: 'msApplication-ID',
         iconRels: ['windows-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
-        getStoreLink: () => {
-          return 'http://www.windowsphone.com/s?appid=' + this.appId;
-        }
-      }
+        getStoreLink: () =>
+          'http://www.windowsphone.com/s?appid=',
+      },
     };
 
-    let agent = ua(navigator.userAgent);
-
-    if (deviceType.length) {
-      this.type = deviceType;
-    } else if (agent.os.name === 'Windows Phone' || agent.os.name === 'Windows Mobile') {
-      this.type = 'windows';
-    //iOS >= 6 has native support for Smart Banner
-    } else if (agent.os.name === 'iOS' && parseInt(agent.os.version, 10) < 6) {
-      this.type = 'ios';
-    } else if (agent.os.name === 'Android') {
-      this.type = 'android';
-    }
-
-    this.settings = mixins[this.type];
+    this.setState({
+      settings: mixins[this.state.type],
+    }, () => {
+      if (this.state.type) {
+        this.parseAppId();
+      }
+    });
   }
 
   hide() {
-    document.querySelector('html').classList.remove('smartbanner-show');
+    window.document.querySelector('html').classList.remove('smartbanner-show');
   }
 
   show() {
-    document.querySelector('html').classList.add('smartbanner-show');
+    window.document.querySelector('html').classList.add('smartbanner-show');
   }
 
   close() {
     this.hide();
     cookie.set('smartbanner-closed', 'true', {
       path: '/',
-      expires: +new Date() + this.props.daysHidden * 1000 * 60 * 60 * 24
+      expires: +new Date() + this.props.daysHidden * 1000 * 60 * 60 * 24,
     });
   }
 
@@ -129,40 +155,56 @@ class SmartBanner extends Component {
     this.hide();
     cookie.set('smartbanner-installed', 'true', {
       path: '/',
-      expires: +new Date() + this.props.daysReminder * 1000 * 60 * 60 * 24
+      expires: +new Date() + this.props.daysReminder * 1000 * 60 * 60 * 24,
     });
   }
 
-  render() {
-    // Don't show banner if device isn't iOS or Android, website is loaded in app,
-    // user dismissed banner, or we have no app id in meta
-    if (!this.type
-      || navigator.standalone
-      || cookie.get('smartbanner-closed')
-      || cookie.get('smartbanner-installed')) {
-      return false;
-    }
-
-    if (this.parseAppId() === '') {
-      return false;
-    }
-
-    this.show();
-
-    let link = this.settings.getStoreLink();
-    let inStore = this.props.price[this.type] + ' - ' + this.props.storeText[this.type];
+  retrieveInfo() {
+    const link = this.state.settings.getStoreLink() + this.state.appId;
+    const inStore = `
+      ${this.props.price[this.state.type]} - ${this.props.storeText[this.state.type]}`;
     let icon;
-    for (let i = 0, max = this.settings.iconRels.length; i < max; i++) {
-      let rel = document.querySelector('link[rel="' + this.settings.iconRels[i] + '"]');
+
+    for (let i = 0, max = this.state.settings.iconRels.length; i < max; i++) {
+      const rel = window.document.querySelector(
+        `link[rel="${this.state.settings.iconRels[i]}"]`);
+
       if (rel) {
         icon = rel.getAttribute('href');
         break;
       }
     }
 
-    let wrapperClassName = 'smartbanner smartbanner-' + this.type;
-    let iconStyle = {
-      backgroundImage: 'url(' + icon + ')'
+    return {
+      icon,
+      link,
+      inStore,
+    };
+  }
+
+  render() {
+    // Don't show banner when:
+    // 1) if device isn't iOS or Android
+    // 2) website is loaded in app,
+    // 3) user dismissed banner,
+    // 4) or we have no app id in meta
+    if (!this.state.type
+      || window.navigator.standalone
+      || cookie.get('smartbanner-closed')
+      || cookie.get('smartbanner-installed')) {
+      return null;
+    }
+
+    if (!this.state.appId) {
+      return null;
+    }
+
+    this.show();
+
+    const { icon, link, inStore } = this.retrieveInfo();
+    const wrapperClassName = `smartbanner smartbanner-${this.state.type}`;
+    const iconStyle = {
+      backgroundImage: `url(${icon})`,
     };
 
     return (
