@@ -4,9 +4,9 @@
  * This file is set up for serving the distribution version. It will be compiled to dist/ by default
  */
 
-'use strict';
-
 var webpack = require('webpack');
+    path = require('path');
+var eslintrcPath = path.resolve(__dirname, '.eslintrc');
 
 module.exports = {
 
@@ -22,30 +22,40 @@ module.exports = {
     example: ['./src/example.js']
   },
 
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM'
+  },
+
   stats: {
     colors: true,
     reasons: false
   },
 
   plugins: [
-    new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        // This has effect on the react lib size
+        "NODE_ENV": JSON.stringify("production")
+      }
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin()
+    new webpack.NormalModuleReplacementPlugin(
+      /^react-smartbanner$/,
+      __dirname + '/dist/main.js'
+    ),
+    new webpack.NormalModuleReplacementPlugin(
+      /^\.\/main\.css$/,
+      __dirname + '/dist/main.css'
+    ),
   ],
 
   resolve: {
     extensions: ['', '.js'],
-    alias: {
-      'styles': __dirname + '/src/styles',
-      'mixins': __dirname + '/src/mixins',
-      'components': __dirname + '/src/components/',
-      'react-smartbanner': '../dist/main.js'
-    }
   },
 
   module: {
@@ -56,12 +66,10 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: 'style!css'
-    }, {
-      test: /\.scss/,
-      loader: 'style!css!sass?outputStyle=expanded'
-    }, {
-      test: /\.(png|jpg|woff|woff2)$/,
-      loader: 'url?limit=8192'
     }]
+  },
+
+  eslint: {
+    configFile: eslintrcPath
   }
 };
