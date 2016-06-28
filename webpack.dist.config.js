@@ -61,7 +61,8 @@ module.exports = {
       }
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin()
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new ExtractTextPlugin('[name].css')
   ],
 
   resolve: {
