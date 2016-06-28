@@ -47,10 +47,11 @@ Remember to add following meta tags in your HTML page: (Use Facebook app as exam
 And React-SmartBanner component usage:
 
 ```javascript
-var React = require('react');
-var SmartBanner = require('react-smartbanner');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import SmartBanner from 'react-smartbanner';
 
-React.render(<SmartBanner title={'Facebook'} />, document.getElementById('content'));
+ReactDOM.render(<SmartBanner title={'Facebook'} />, document.getElementById('content'));
 ```
 
 ### Properties

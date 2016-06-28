@@ -63,12 +63,12 @@
 
         <p>And React-SmartBanner component usage:</p>
 
-        <pre><code class="javascript">'use strict';
+        <pre><code class="javascript">
+import React from 'react';
+import ReactDOM from 'react-dom';
+import SmartBanner from 'react-smartbanner';
 
-var React = require('react');
-var SmartBanner = require('react-smartbanner');
-
-React.render(&lt;SmartBanner title={'Facebook'} /&gt;, document.getElementById('content'));
+ReactDOM.render(&lt;SmartBanner title={'Facebook'} /&gt;, document.getElementById('content'));
 </code></pre>
 
         <hr>
@@ -176,7 +176,8 @@ React.render(&lt;SmartBanner title={'Facebook'} /&gt;, document.getElementById('
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
   <script>
     __REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
   </script>
