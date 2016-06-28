@@ -93,12 +93,6 @@ module.exports = function (grunt) {
             ],
             dest: '<%= folders.example %>/',
             filter: 'isFile'
-          },
-          {
-            flatten: true,
-            expand: true,
-            src: '<%= folders.src %>/styles/*',
-            dest: '<%= folders.dist %>/styles/'
           }
         ]
       }
