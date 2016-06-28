@@ -7,7 +7,6 @@
 var webpack = require('webpack'),
     path = require('path');
 var eslintrcPath = path.resolve(__dirname, '.eslintrc');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: false,
@@ -61,8 +60,7 @@ module.exports = {
       }
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new ExtractTextPlugin('[name].css')
+    new webpack.optimize.AggressiveMergingPlugin()
   ],
 
   resolve: {
@@ -81,7 +79,7 @@ module.exports = {
       loader: 'uglify!babel'
     }, {
       test: /\.scss/,
-      loader: ExtractTextPlugin.extract('style', 'css!sass?outputStyle=expanded')
+      loader: 'style!css!sass?outputStyle=compressed'
     }]
   },
 

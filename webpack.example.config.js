@@ -48,10 +48,6 @@ module.exports = {
       /^react-smartbanner$/,
       __dirname + '/dist/main.js'
     ),
-    new webpack.NormalModuleReplacementPlugin(
-      /^\.\/main\.css$/,
-      __dirname + '/dist/main.css'
-    ),
   ],
 
   resolve: {
