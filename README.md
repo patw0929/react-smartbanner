@@ -5,7 +5,7 @@ Rewrite [Smart App Banner](https://github.com/kudago/smart-app-banner) in React.
 
 ## Demo & Examples
 
-Live demo: [patw0929.github.io/react-smartbanner](http://patw0929.github.io/react-smartbanner/)
+Live demo: [patw0929.github.io/react-smartbanner](https://patw0929.github.io/react-smartbanner/)
 
 To build the examples locally, run:
 
@@ -56,7 +56,7 @@ ReactDOM.render(<SmartBanner title={'Facebook'} />, document.getElementById('con
 
 ### Properties
 
-Please see the [Demo Page](http://patw0929.github.io/react-smartbanner/)
+Please see the [Demo Page](https://patw0929.github.io/react-smartbanner/)
 
 
 ## Development (`src` and the build process)
