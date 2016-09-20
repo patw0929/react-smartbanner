@@ -54,6 +54,12 @@ class DemoComponent extends Component {
                   onClick={() => { this.changeType('windows'); }}
                 >WinPhone</button>
               </div>
+              <div className="btn-group" role="group">
+                <button type="button"
+                  className="btn btn-primary"
+                  onClick={() => { this.changeType('kindle'); }}
+                >Kindle</button>
+              </div>
             </div>
             <div className="btn-group btn-group-justified" role="group">
               <div className="btn-group" role="group">
