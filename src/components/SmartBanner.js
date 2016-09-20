@@ -198,8 +198,6 @@ class SmartBanner extends Component {
     // 2) website is loaded in app,
     // 3) user dismissed banner,
     // 4) or we have no app id in meta
-    console.log('render type', this.state.type)
-
     if (!this.state.type
       || window.navigator.standalone
       || cookie.get('smartbanner-closed')
