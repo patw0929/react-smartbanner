@@ -37,11 +37,13 @@ class SmartBanner extends Component {
       ios: 'On the App Store',
       android: 'In Google Play',
       windows: 'In Windows Store',
+      kindle: 'In the Amazon Appstore',
     },
     price: {
       ios: 'Free',
       android: 'Free',
       windows: 'Free',
+      kindle: 'Free',
     },
     force: '',
     title: '',
@@ -69,6 +71,8 @@ class SmartBanner extends Component {
     // iOS >= 6 has native support for Smart Banner
     } else if (agent.os.name === 'iOS' && parseInt(agent.os.version, 10) < 6) {
       type = 'ios';
+    } else if (agent.device.vender === 'Amazon' || agent.browser.name === 'Silk') {
+      type = 'kindle'
     } else if (agent.os.name === 'Android') {
       type = 'android';
     }
@@ -123,6 +127,12 @@ class SmartBanner extends Component {
         iconRels: ['windows-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
         getStoreLink: () =>
           'http://www.windowsphone.com/s?appid=',
+      },
+      kindle: {
+        appMeta: 'kindle-fire-app',
+          iconRels: ['windows-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
+          getStoreLink: () =>
+            'amzn://apps/android?asin=',
       },
     };
 
