@@ -72,7 +72,7 @@ class SmartBanner extends Component {
     } else if (agent.os.name === 'iOS' && parseInt(agent.os.version, 10) < 6) {
       type = 'ios';
     } else if (agent.device.vender === 'Amazon' || agent.browser.name === 'Silk') {
-      type = 'kindle'
+      type = 'kindle';
     } else if (agent.os.name === 'Android') {
       type = 'android';
     }
@@ -130,9 +130,9 @@ class SmartBanner extends Component {
       },
       kindle: {
         appMeta: 'kindle-fire-app',
-          iconRels: ['windows-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
-          getStoreLink: () =>
-            'amzn://apps/android?asin=',
+        iconRels: ['windows-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
+        getStoreLink: () =>
+          'amzn://apps/android?asin=',
       },
     };
 
