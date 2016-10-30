@@ -25,6 +25,7 @@ class SmartBanner extends Component {
     force: PropTypes.string,
     title: PropTypes.string,
     author: PropTypes.string,
+    url: PropTypes.string,
   };
 
   static defaultProps = {
@@ -170,7 +171,7 @@ class SmartBanner extends Component {
   }
 
   retrieveInfo() {
-    const link = this.state.settings.getStoreLink() + this.state.appId;
+    const link = this.props.url || this.state.settings.getStoreLink() + this.state.appId;
     const inStore = `
       ${this.props.price[this.state.type]} - ${this.props.storeText[this.state.type]}`;
     let icon;
