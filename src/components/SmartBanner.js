@@ -71,8 +71,11 @@ class SmartBanner extends Component {
     } else if (agent.os.name === 'Windows Phone' || agent.os.name === 'Windows Mobile') {
       type = 'windows';
     // iOS >= 6 has native support for Smart Banner
-    } else if (agent.os.name === 'iOS' &&
-               (this.props.ignoreIosVersion || parseInt(agent.os.version, 10) < 6)) {
+    } else if (agent.os.name === 'iOS'
+      && (this.props.ignoreIosVersion
+        || parseInt(agent.os.version, 10) < 6
+        || agent.os.browser.name !== 'Safari')
+    ) {
       type = 'ios';
     } else if (agent.device.vender === 'Amazon' || agent.browser.name === 'Silk') {
       type = 'kindle';
