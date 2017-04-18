@@ -74,7 +74,7 @@ class SmartBanner extends Component {
     } else if (agent.os.name === 'iOS'
       && (this.props.ignoreIosVersion
         || parseInt(agent.os.version, 10) < 6
-        || agent.browser.name !== 'Safari')
+        || agent.browser.name !== 'Mobile Safari')
     ) {
       type = 'ios';
     } else if (agent.device.vender === 'Amazon' || agent.browser.name === 'Silk') {
