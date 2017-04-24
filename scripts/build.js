@@ -191,7 +191,7 @@ function copyToDistFolder() {
     filter: (file) => {
       const target = path.basename(file);
 
-      if (target !== 'index.html' && target !== 'example.js') {
+      if (target !== 'index.html' && target !== 'example.js' && target !== 'icon.png') {
         return true;
       }
 
