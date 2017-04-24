@@ -9,9 +9,16 @@ Live demo: [patw0929.github.io/react-smartbanner](https://patw0929.github.io/rea
 
 To build the examples locally, run:
 
-```
+```bash
 npm install
 npm run example
+```
+
+or
+
+```bash
+yarn
+yarn start
 ```
 
 Then open [`localhost:8000`](http://localhost:8000) in a browser.
@@ -27,6 +34,11 @@ You can also use the standalone build by including `dist/main.js` in your page. 
 npm install react-smartbanner --save
 ```
 
+or
+
+```bash
+yarn add react-smartbanner
+```
 
 ## Usage
 
@@ -63,7 +75,35 @@ Please see the [Demo Page](https://patw0929.github.io/react-smartbanner/)
 
 **NOTE:** The source code for the component is in `src`. A UMD bundle is also built to `dist`, which can be included without the need for any build system.
 
-To build, watch and serve the examples (which will also watch the component source), run `npm run example`.
+To build, watch and serve the examples (which will also watch the component source), run `npm start`.
+
+If you want to build to the bundle file to `dist/` folder, please run:
+
+```bash
+npm run build
+```
+
+or
+
+```bash
+yarn run build
+```
+
+## Contributing
+
+To contribute to react-intl-tel-input, clone this repo locally and commit your code on a separate branch. Please write tests for your code, and run the linter before opening a pull-request:
+
+```bash
+npm test
+npm run lint
+```
+
+or
+
+```bash
+yarn test
+yarn run lint
+```
 
 ## Based on
 
@@ -73,4 +113,4 @@ To build, watch and serve the examples (which will also watch the component sour
 
 MIT
 
-Copyright (c) 2015 patw.
+Copyright (c) 2015-2017 patw.
