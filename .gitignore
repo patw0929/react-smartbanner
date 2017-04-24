@@ -37,3 +37,11 @@ node_modules/
 .grunt/
 .history/
 npm-debug.log
+build/**
+dist/**
+example/**
+test/**
+webpack.*.js
+coverage/*
+eslintrc.js
+package.json
