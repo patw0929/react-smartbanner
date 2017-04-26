@@ -62,6 +62,7 @@ And React-SmartBanner component usage:
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SmartBanner from 'react-smartbanner';
+import './node_modules/react-smartbanner/dist/main.css';
 
 ReactDOM.render(<SmartBanner title={'Facebook'} />, document.getElementById('content'));
 ```
@@ -91,7 +92,7 @@ yarn run build
 
 ## Contributing
 
-To contribute to react-intl-tel-input, clone this repo locally and commit your code on a separate branch. Please write tests for your code, and run the linter before opening a pull-request:
+To contribute to react-smartbanner, clone this repo locally and commit your code on a separate branch. Please write tests for your code, and run the linter before opening a pull-request:
 
 ```bash
 npm test
