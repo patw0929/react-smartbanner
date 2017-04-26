@@ -1,3 +1,10 @@
+$smartbannerCloseMargin: 5px;
+$smartbannerCloseSize: 17px;
+$smartbannerIconMargin: 12px;
+$smartbannerIconSize: 57px;
+$smartbannerButtonSize: 110px;
+
+
 .smartbanner-show {
   margin-top: 80px;
 }
@@ -27,12 +34,13 @@
 .smartbanner-container {
   margin: 0 auto;
   white-space: nowrap;
+  padding: 0 5px;
 }
 
 .smartbanner-close {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 5px;
+  margin: 0 $smartbannerCloseMargin 0 0;
   font-family: 'ArialRoundedMTBold', Arial;
   font-size: 20px;
   text-align: center;
@@ -51,17 +59,18 @@
 .smartbanner-icon {
   display: inline-block;
   vertical-align: middle;
-  width: 57px;
-  height: 57px;
-  margin-right: 12px;
+  width: $smartbannerIconSize;
+  height: $smartbannerIconSize  ;
+  margin-right: $smartbannerIconMargin;
   background-size: cover;
   border-radius: 10px;
 }
 
 .smartbanner-info {
+  white-space: normal;
   display: inline-block;
   vertical-align: middle;
-  width: 44%;
+  width: calc(99% - #{$smartbannerCloseMargin} - #{$smartbannerCloseSize} - #{$smartbannerIconMargin} - #{$smartbannerIconSize} - #{$smartbannerButtonSize});
   font-size: 11px;
   line-height: 1.2em;
   font-weight: bold;
@@ -71,12 +80,14 @@
   font-size:13px;
   line-height: 18px;
 }
+.smartbanner-wrapper{
+  max-width: $smartbannerButtonSize;
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+}
 
 .smartbanner-button {
-  position: absolute;
-  right: 20px;
-  top: 0;
-  bottom: 0;
   margin: auto 0;
   height: 24px;
   font-size: 14px;
@@ -86,6 +97,7 @@
   color: #6a6a6a;
   text-transform: uppercase;
   text-decoration: none;
+  display: inline-block;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
 }
 
@@ -169,9 +181,10 @@
 
 .smartbanner-android .smartbanner-close {
   border: 0;
-  width: 17px;
-  height: 17px;
-  line-height: 17px;
+  max-width: $smartbannerCloseSize;
+  width: 100%;
+  height: $smartbannerCloseSize;
+  line-height: $smartbannerCloseSize;
   margin-right: 7px;
   color: #b1b1b3;
   background: #1c1e21;

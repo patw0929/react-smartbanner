@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import ua from 'ua-parser-js';
 import cookie from 'cookie-cutter';
+import PropTypes from 'prop-types';
 
 import '../styles/style.scss';
 
@@ -233,10 +234,11 @@ class SmartBanner extends Component {
             <div>{this.props.author}</div>
             <span>{inStore}</span>
           </div>
-
-          <a href={link} onClick={::this.install} className="smartbanner-button">
-            <span className="smartbanner-button-text">{this.props.button}</span>
-          </a>
+          <div className="smartbanner-wrapper">
+            <a href={link} onClick={::this.install} className="smartbanner-button">
+              <span className="smartbanner-button-text">{this.props.button}</span>
+            </a>
+          </div>
         </div>
       </div>
     );
