@@ -35,4 +35,5 @@ node_modules/
 .tmp
 /src/main.js
 .grunt/
+.history/
 npm-debug.log

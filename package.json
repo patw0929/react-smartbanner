@@ -13,6 +13,7 @@
   "dependencies": {
     "cookie-cutter": "^0.1.1",
     "cookies-js": "^1.2.1",
+    "prop-types": "^15.5.8",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "ua-parser-js": "^0.7.9"
