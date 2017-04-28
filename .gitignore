@@ -41,7 +41,4 @@ build/**
 dist/**
 example/**
 test/**
-webpack.*.js
 coverage/*
-eslintrc.js
-package.json
