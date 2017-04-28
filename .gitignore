@@ -37,3 +37,8 @@ node_modules/
 .grunt/
 .history/
 npm-debug.log
+build/**
+dist/**
+example/**
+test/**
+coverage/*
