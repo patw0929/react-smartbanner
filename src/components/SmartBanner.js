@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import ua from 'ua-parser-js';
-import cookie from 'cookie-cutter';
 import PropTypes from 'prop-types';
 import '../styles/style.scss';
 
