@@ -178,7 +178,7 @@ class SmartBanner extends Component {
     }
   }
 
-  close() {
+  close = () => {
     this.hide();
     cookie.set('smartbanner-closed', 'true', {
       path: '/',
@@ -186,7 +186,7 @@ class SmartBanner extends Component {
     });
   }
 
-  install() {
+  install = () => {
     this.hide();
     cookie.set('smartbanner-installed', 'true', {
       path: '/',
