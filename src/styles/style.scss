@@ -64,6 +64,7 @@ $smartbannerButtonSize: 110px;
 }
 
 .smartbanner-info {
+  white-space: normal;
   display: inline-block;
   vertical-align: middle;
   width: calc(99% - #{$smartbannerCloseMargin} - #{$smartbannerCloseSize} - #{$smartbannerIconMargin} - #{$smartbannerIconSize} - #{$smartbannerButtonSize});
@@ -101,6 +102,12 @@ $smartbannerButtonSize: 110px;
       max-height: 50px;
     }
   }
+}
+.smartbanner-wrapper{
+  max-width: $smartbannerButtonSize;
+  display: inline-block;
+  text-align: right;
+  width: 100%;
 }
 
 .smartbanner-button {
