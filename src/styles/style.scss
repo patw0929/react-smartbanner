@@ -12,7 +12,6 @@ $smartbannerButtonSize: 110px;
   display: block;
 }
 
-
 /** Default **/
 .smartbanner {
   position: absolute;
@@ -114,6 +113,7 @@ $smartbannerButtonSize: 110px;
   color: #6a6a6a;
   text-transform: uppercase;
   text-decoration: none;
+  display: inline-block;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
 }
 
