@@ -1,15 +1,15 @@
-$smartbannerCloseMargin: 5px;
-$smartbannerCloseSize: 17px;
-$smartbannerIconMargin: 12px;
-$smartbannerIconSize: 57px;
-$smartbannerButtonSize: 110px;
+$smartbanner-close-margin: 5px;
+$smartbanner-close-size: 17px;
+$smartbanner-icon-margin: 12px;
+$smartbanner-icon-size: 57px;
+$smartbanner-button-size: 110px;
 
 .smartbanner-show {
   margin-top: 80px;
-}
 
-.smartbanner-show .smartbanner {
-  display: block;
+  .smartbanner {
+    display: block;
+  }
 }
 
 /** Default **/
@@ -37,7 +37,7 @@ $smartbannerButtonSize: 110px;
 .smartbanner-close {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 $smartbannerCloseMargin 0 0;
+  margin: 0 $smartbanner-close-margin 0 0;
   font-family: 'ArialRoundedMTBold', Arial;
   font-size: 20px;
   text-align: center;
@@ -46,19 +46,19 @@ $smartbannerButtonSize: 110px;
   border: 0;
   border-radius: 14px;
   -webkit-font-smoothing: subpixel-antialiased;
-}
 
-.smartbanner-close:active,
-.smartbanner-close:hover {
-  color: #aaa;
+  &:active,
+  &:hover {
+    color: #aaa;
+  }
 }
 
 .smartbanner-icon {
   display: inline-block;
   vertical-align: middle;
-  width: $smartbannerIconSize;
-  height: $smartbannerIconSize;
-  margin-right: $smartbannerIconMargin;
+  width: $smartbanner-icon-size;
+  height: $smartbanner-icon-size;
+  margin-right: $smartbanner-icon-margin;
   background-size: cover;
   border-radius: 10px;
 }
@@ -67,21 +67,21 @@ $smartbannerButtonSize: 110px;
   white-space: normal;
   display: inline-block;
   vertical-align: middle;
-  width: calc(99% - #{$smartbannerCloseMargin} - #{$smartbannerCloseSize} - #{$smartbannerIconMargin} - #{$smartbannerIconSize} - #{$smartbannerButtonSize});
+  width: calc(99% - #{$smartbanner-close-margin} - #{$smartbanner-close-size} - #{$smartbanner-icon-margin} - #{$smartbanner-icon-size} - #{$smartbanner-button-size});
   font-size: 11px;
   line-height: 1.2em;
   font-weight: bold;
 }
 
 .smartbanner-wrapper {
-  max-width: $smartbannerButtonSize;
+  max-width: $smartbanner-button-size;
   display: inline-block;
   text-align: right;
   width: 100%;
 }
 
 .smartbanner-title {
-  font-size:13px;
+  font-size: 13px;
   line-height: 18px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -89,25 +89,20 @@ $smartbannerButtonSize: 110px;
 }
 
 .smartbanner-description {
-    max-height: 40px;
-    overflow: hidden;
+  max-height: 40px;
+  overflow: hidden;
 }
 
 .smartbanner-author {
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden; 
+  overflow: hidden;
+
   &:empty {
     + .smartbanner-description {
       max-height: 50px;
     }
   }
-}
-.smartbanner-wrapper{
-  max-width: $smartbannerButtonSize;
-  display: inline-block;
-  text-align: right;
-  width: 100%;
 }
 
 .smartbanner-button {
@@ -121,226 +116,192 @@ $smartbannerButtonSize: 110px;
   text-transform: uppercase;
   text-decoration: none;
   display: inline-block;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
-}
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 
-.smartbanner-button:active, .smartbanner-button:hover {
-  color: #aaa;
+  &:active,
+  &:hover {
+    color: #aaa;
+  }
 }
-
-.smartbanner-button-text {
-}
-
-.smartbanner-button-text:active,
-.smartbanner-button-text:hover {
-}
-
 
 /** iOS **/
 .smartbanner-ios {
   background: #f2f2f2;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   line-height: 80px;
-}
 
-.smartbanner-ios .smartbanner-close {
-  border: 0;
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
-  font-family: Arial;
-  color: #888;
-  text-shadow: 0 1px 0 #fff;
-  -webkit-font-smoothing: none;
-}
+  .smartbanner-close {
+    border: 0;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-family: Arial;
+    color: #888;
+    text-shadow: 0 1px 0 #fff;
+    -webkit-font-smoothing: none;
 
-.smartbanner-ios .smartbanner-close:active,
-.smartbanner-ios .smartbanner-close:hover {
-  color: #888;
-}
+    &:active,
+    &:hover {
+      color: #888;
+    }
+  }
 
-.smartbanner-ios .smartbanner-icon {
-  background-size: cover;
-}
+  .smartbanner-icon {
+    background-size: cover;
+  }
 
-.smartbanner-ios .smartbanner-info {
-  color: #6a6a6a;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
-  font-weight:300;
-}
+  .smartbanner-info {
+    color: #6a6a6a;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+  }
 
-.smartbanner-ios .smartbanner-title {
-  color:#4d4d4d;
-  font-weight: 500;
-}
+  .smartbanner-title {
+    color: #4d4d4d;
+    font-weight: 500;
+  }
 
-.smartbanner-ios .smartbanner-button {
-  padding: 0 10px;
-  font-size: 15px;
-  min-width: 10%;
-  font-weight: 400;
-  color: #0C71FD;
-}
+  .smartbanner-button {
+    padding: 0 10px;
+    font-size: 15px;
+    min-width: 10%;
+    font-weight: 400;
+    color: #0c71fd;
 
-.smartbanner-ios .smartbanner-button:active,
-.smartbanner-ios .smartbanner-button:hover {
-  background: #f2f2f2;
+    &:active,
+    &:hover {
+      background: #f2f2f2;
+    }
+  }
 }
-
-.smartbanner-ios .smartbanner-button-text {
-}
-
-.smartbanner-ios .smartbanner-button-text:active,
-.smartbanner-ios .smartbanner-button-text:hover {
-}
-
 
 /** Android **/
 .smartbanner-android {
-  background: #3d3d3d url(data:image/gif;base64,R0lGODlhCAAIAIABAFVVVf///yH5BAEHAAEALAAAAAAIAAgAAAINRG4XudroGJBRsYcxKAA7);
+  background: #3d3d3d url('data:image/gif;base64,R0lGODlhCAAIAIABAFVVVf///yH5BAEHAAEALAAAAAAIAAgAAAINRG4XudroGJBRsYcxKAA7');
   box-shadow: inset 0 4px 0 #88b131;
   line-height: 82px;
-}
 
-.smartbanner-android .smartbanner-close {
-  border: 0;
-  max-width: $smartbannerCloseSize;
-  width: 100%;
-  height: $smartbannerCloseSize;
-  line-height: $smartbannerCloseSize;
-  margin-right: 7px;
-  color: #b1b1b3;
-  background: #1c1e21;
-  text-shadow: 0 1px 1px #000;
-  text-decoration: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .8) inset, 0 1px 1px rgba(255, 255, 255, .3);
-  cursor: pointer;
-}
+  .smartbanner-close {
+    border: 0;
+    max-width: $smartbanner-close-size;
+    width: 100%;
+    height: $smartbanner-close-size;
+    line-height: $smartbanner-close-size;
+    margin-right: 7px;
+    color: #b1b1b3;
+    background: #1c1e21;
+    text-shadow: 0 1px 1px #000;
+    text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) inset, 0 1px 1px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
 
-.smartbanner-android .smartbanner-close:active,
-.smartbanner-android .smartbanner-close:hover {
-  color: #eee;
-}
+    &:active,
+    &:hover {
+      color: #eee;
+    }
+  }
 
-.smartbanner-android .smartbanner-icon {
-  background-color: transparent;
-  box-shadow: none;
-}
+  .smartbanner-icon {
+    background-color: transparent;
+    box-shadow: none;
+  }
 
-.smartbanner-android .smartbanner-info {
-  color: #ccc;
-  text-shadow:0 1px 2px #000;
-}
+  .smartbanner-info {
+    color: #ccc;
+    text-shadow: 0 1px 2px #000;
+  }
 
-.smartbanner-android .smartbanner-title {
-  color: #fff;
-  font-weight: bold;
-}
+  .smartbanner-title {
+    color: #fff;
+    font-weight: bold;
+  }
 
-.smartbanner-android .smartbanner-button {
-  min-width: 12%;
-  color: #d1d1d1;
-  font-weight: bold;
-  padding: 0;
-  background: none;
-  border-radius: 0;
-  box-shadow: 0 0 0 1px #333, 0 0 0 2px #dddcdc;
-}
+  .smartbanner-button {
+    min-width: 12%;
+    color: #d1d1d1;
+    font-weight: bold;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px #333, 0 0 0 2px #dddcdc;
 
-.smartbanner-android .smartbanner-button:active,
-.smartbanner-android .smartbanner-button:hover {
-  background: none;
-}
+    &:active,
+    &:hover {
+      background: none;
+    }
+  }
 
-.smartbanner-android .smartbanner-button-text {
-  text-align: center;
-  display: block;
-  padding: 0 10px;
-  background: #42b6c9;
-  background: linear-gradient(to bottom, #42b6c9, #39a9bb);
-  text-transform: none;
-  text-shadow: none;
-  box-shadow: none;
-}
+  .smartbanner-button-text {
+    text-align: center;
+    display: block;
+    padding: 0 10px;
+    background: #42b6c9;
+    background: linear-gradient(to bottom, #42b6c9, #39a9bb); // sass-lint:disable-block no-duplicate-properties
+    text-transform: none;
+    text-shadow: none;
+    box-shadow: none;
 
-.smartbanner-android .smartbanner-button-text:active,
-.smartbanner-android .smartbanner-button-text:hover {
-  background: #2ac7e1;
+    &:active,
+    &:hover {
+      background: #2ac7e1;
+    }
+  }
 }
-
 
 /** Windows / Kindle **/
 .smartbanner-windows,
 .smartbanner-kindle {
   background: #f4f4f4;
-  background: linear-gradient(to bottom, #f4f4f4, #cdcdcd);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+  background: linear-gradient(to bottom, #f4f4f4, #cdcdcd); // sass-lint:disable-block no-duplicate-properties
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   line-height: 80px;
-}
 
-.smartbanner-windows .smartbanner-close,
-.smartbanner-kindle .smartbanner-close {
-  border: 0;
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
-  color: #888;
-  text-shadow: 0 1px 0 #fff;
-}
+  .smartbanner-close {
+    border: 0;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    color: #888;
+    text-shadow: 0 1px 0 #fff;
 
-.smartbanner-windows .smartbanner-close:active,
-.smartbanner-windows .smartbanner-close:hover,
-.smartbanner-kindle .smartbanner-close:active,
-.smartbanner-kindle .smartbanner-close:hover {
-  color: #aaa;
-}
+    &:active,
+    &:hover {
+      color: #aaa;
+    }
+  }
 
-.smartbanner-windows .smartbanner-icon,
-.smartbanner-kindle .smartbanner-icon {
-  background: rgba(0, 0, 0, .6);
-  background-size: cover;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
-}
+  .smartbanner-icon {
+    background: rgba(0, 0, 0, 0.6);
+    background-size: cover;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
 
-.smartbanner-windows .smartbanner-info,
-.smartbanner-kindle .smartbanner-info {
-  color: #6a6a6a;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
-}
+  .smartbanner-info {
+    color: #6a6a6a;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
 
-.smartbanner-windows .smartbanner-title,
-.smartbanner-kindle .smartbanner-title {
-  color: #4d4d4d;
-  font-weight: bold;
-}
+  .smartbanner-title,
+  .smartbanner-title {
+    color: #4d4d4d;
+    font-weight: bold;
+  }
 
-.smartbanner-windows .smartbanner-button,
-.smartbanner-kindle .smartbanner-button {
-  padding: 0 10px;
-  min-width: 10%;
-  color: #6a6a6a;
-  background: #efefef;
-  background: linear-gradient(to bottom, #efefef, #dcdcdc);
-  border-radius: 3px;
-  box-shadow: inset 0 0 0 1px #bfbfbf,
-              0 1px 0 rgba(255, 255, 255, .6),
-              0 2px 0 rgba(255, 255, 255, .7) inset;
-}
+  .smartbanner-button {
+    padding: 0 10px;
+    min-width: 10%;
+    color: #6a6a6a;
+    background: #efefef;
+    background: linear-gradient(to bottom, #efefef, #dcdcdc); // sass-lint:disable-block no-duplicate-properties
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px #bfbfbf,
+    0 1px 0 rgba(255, 255, 255, 0.6),
+    0 2px 0 rgba(255, 255, 255, 0.7) inset;
 
-.smartbanner-windows .smartbanner-button:active,
-.smartbanner-windows .smartbanner-button:hover,
-.smartbanner-kindle .smartbanner-button:active,
-.smartbanner-kindle .smartbanner-button:hover {
-  background: #dcdcdc;
-  background: linear-gradient(to bottom, #dcdcdc, #efefef);
-}
-
-.smartbanner-windows .smartbanner-button-text,
-.smartbanner-kindle .smartbanner-button-text {
-}
-
-.smartbanner-windows .smartbanner-button-text:active,
-.smartbanner-windows .smartbanner-button-text:hover,
-.smartbanner-kindle .smartbanner-button-text:active,
-.smartbanner-kindle .smartbanner-button-text:hover {
+    &:active,
+    &:hover {
+      background: #dcdcdc;
+      background: linear-gradient(to bottom, #dcdcdc, #efefef); // sass-lint:disable-block no-duplicate-properties
+    }
+  }
 }
