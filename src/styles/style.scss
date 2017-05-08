@@ -4,7 +4,6 @@ $smartbannerIconMargin: 12px;
 $smartbannerIconSize: 57px;
 $smartbannerButtonSize: 110px;
 
-
 .smartbanner-show {
   margin-top: 80px;
 }
@@ -12,7 +11,6 @@ $smartbannerButtonSize: 110px;
 .smartbanner-show .smartbanner {
   display: block;
 }
-
 
 /** Default **/
 .smartbanner {
@@ -33,7 +31,6 @@ $smartbannerButtonSize: 110px;
 
 .smartbanner-container {
   margin: 0 auto;
-  white-space: nowrap;
   padding: 0 5px;
 }
 
@@ -60,7 +57,7 @@ $smartbannerButtonSize: 110px;
   display: inline-block;
   vertical-align: middle;
   width: $smartbannerIconSize;
-  height: $smartbannerIconSize  ;
+  height: $smartbannerIconSize;
   margin-right: $smartbannerIconMargin;
   background-size: cover;
   border-radius: 10px;
@@ -76,9 +73,35 @@ $smartbannerButtonSize: 110px;
   font-weight: bold;
 }
 
+.smartbanner-wrapper {
+  max-width: $smartbannerButtonSize;
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+}
+
 .smartbanner-title {
   font-size:13px;
   line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.smartbanner-description {
+    max-height: 40px;
+    overflow: hidden;
+}
+
+.smartbanner-author {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; 
+  &:empty {
+    + .smartbanner-description {
+      max-height: 50px;
+    }
+  }
 }
 .smartbanner-wrapper{
   max-width: $smartbannerButtonSize;

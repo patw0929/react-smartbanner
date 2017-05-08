@@ -255,8 +255,8 @@ class SmartBanner extends Component {
           <span className="smartbanner-icon" style={ iconStyle } />
           <div className="smartbanner-info">
             <div className="smartbanner-title">{this.props.title}</div>
-            <div>{this.props.author}</div>
-            <span>{inStore}</span>
+            <div className="smartbanner-author">{this.props.author}</div>
+            <div className="smartbanner-description" >{inStore}</div>
           </div>
           <div className="smartbanner-wrapper">
             <a href={ link } onClick={ this.install } className="smartbanner-button">
