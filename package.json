@@ -84,8 +84,9 @@
     "deploy": "gh-pages -d example",
     "lint-staged": "lint-staged",
     "lint-pass": "echo '\\033[4;32m♡' No any errors! Go go go! ♡' \\033[0m'",
-    "lint": "yarn run eslint",
+    "lint": "yarn run eslint && yarn run sass-lint",
     "eslint": "eslint src",
+    "sass-lint": "sass-lint -v",
     "test": "TZ=Asia/Taipei node scripts/test.js --env=jsdom",
     "coverage": "yarn run test -- --coverage",
     "coveralls": "NODE_ENV=development cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
@@ -94,6 +95,9 @@
     "*.js": [
       "jest --findRelatedTests",
       "eslint --max-warnings 0"
+    ],
+    "*.scss": [
+      "sass-lint --max-warnings 0 -v"
     ]
   },
   "pre-commit": [
