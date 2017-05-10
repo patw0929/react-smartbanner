@@ -70,7 +70,7 @@ class SmartBanner extends Component {
   }
 
   setType(deviceType) {
-    let type = 'android';
+    let type;
 
     if (isClient) {
       const agent = ua(window.navigator.userAgent);
