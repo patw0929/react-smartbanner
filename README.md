@@ -1,5 +1,10 @@
 # React-SmartBanner
 
+[![Build Status](https://travis-ci.org/patw0929/react-smartbanner.svg)](https://travis-ci.org/patw0929/react-smartbanner)
+[![npm version](https://badge.fury.io/js/react-smartbanner.svg)](http://badge.fury.io/js/react-smartbanner)
+[![Coverage Status](https://coveralls.io/repos/github/patw0929/react-smartbanner/badge.svg?branch=master)](https://coveralls.io/github/patw0929/react-smartbanner?branch=master)
+[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
+
 Rewrite [Smart App Banner](https://github.com/kudago/smart-app-banner) in React.js.
 
 
