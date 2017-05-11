@@ -1,26 +1,5 @@
 import jsdom from 'jsdom';
-import sinon from 'sinon';
 
-// localStorage
-class LocalStorageMock {
-  constructor() {
-    this.store = {};
-  }
-
-  clear() {
-    this.store = {};
-  }
-
-  getItem(key) {
-    return this.store[key];
-  }
-
-  setItem(key, value) {
-    this.store[key] = value.toString();
-  }
-}
-
-window.localStorage = new LocalStorageMock();
 window.__SERVER__ = false;
 window.__DEVELOPMENT__ = false;
 
@@ -30,12 +9,20 @@ const DEFAULT_HTML = '<!doctype html><html><body></body></html>';
 
 // Define some variables to make it look like we're a browser
 // First, use JSDOM's fake DOM as the document
-global.document = jsdom.jsdom(DEFAULT_HTML);
+const doc = jsdom.jsdom(DEFAULT_HTML);
+
+global.document = doc;
 
 // Set up a mock window
-global.window = document.defaultView;
+global.window = doc.defaultView;
 
 // Allow for things like window.location
 global.navigator = window.navigator;
 
-global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
+const DATE_TO_USE = new Date('2017-05-11');
+const _Date = Date;
+
+global.Date = jest.fn(() => DATE_TO_USE);
+global.Date.UTC = _Date.UTC;
+global.Date.parse = _Date.parse;
+global.Date.now = _Date.now;
