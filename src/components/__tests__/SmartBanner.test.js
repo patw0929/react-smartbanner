@@ -131,4 +131,26 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
       });
     });
   });
+
+  it('should only render div in SERVER env', () => {
+    global.window = undefined;
+    document.querySelector('head').innerHTML = '';
+    const subject = this.makeSubject();
+
+    expect(subject.html()).toBe('<div></div>');
+  });
+
+  it('should change type in state after receiving new force props', () => {
+    const subject = this.makeSubject({
+      force: 'android',
+    });
+
+    expect(subject.state('type')).toBe('android');
+
+    subject.setProps({
+      force: 'ios',
+    });
+
+    expect(subject.state('type')).toBe('ios');
+  });
 });
