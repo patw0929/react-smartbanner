@@ -24,8 +24,8 @@ class SmartBanner extends Component {
   static defaultProps = {
     daysHidden: 15,
     daysReminder: 90,
-    appStoreLanguage: isClient ? (window.navigator.language.slice(-2) ||
-      window.navigator.userLanguage.slice(-2) || 'us') : 'us',
+    appStoreLanguage: isClient ?
+      (window.navigator.language || window.navigator.userLanguage).slice(-2) || 'us' : 'us',
     button: 'View',
     storeText: {
       ios: 'On the App Store',
