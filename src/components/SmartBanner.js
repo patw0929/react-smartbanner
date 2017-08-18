@@ -19,6 +19,12 @@ class SmartBanner extends Component {
     author: PropTypes.string,
     url: PropTypes.string,
     ignoreIosVersion: PropTypes.bool,
+    appMeta: PropTypes.shape({
+      android: PropTypes.string,
+      ios: PropTypes.string,
+      windows: PropTypes.string,
+      kindle: PropTypes.string,
+    }),
   };
 
   static defaultProps = {
@@ -42,6 +48,12 @@ class SmartBanner extends Component {
     force: '',
     title: '',
     author: '',
+    appMeta: {
+      ios: 'apple-itunes-app',
+      android: 'google-play-app',
+      windows: 'msApplication-ID',
+      kindle: 'kindle-fire-app',
+    },
   };
 
   constructor(props) {
@@ -105,25 +117,25 @@ class SmartBanner extends Component {
   setSettingsByType() {
     const mixins = {
       ios: {
-        appMeta: 'apple-itunes-app',
+        appMeta: () => this.props.appMeta.ios,
         iconRels: ['apple-touch-icon-precomposed', 'apple-touch-icon'],
         getStoreLink: () =>
           `https://itunes.apple.com/${this.props.appStoreLanguage}/app/id`,
       },
       android: {
-        appMeta: 'google-play-app',
+        appMeta: () => this.props.appMeta.android,
         iconRels: ['android-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
         getStoreLink: () =>
           'http://play.google.com/store/apps/details?id=',
       },
       windows: {
-        appMeta: 'msApplication-ID',
+        appMeta: () => this.props.appMeta.windows,
         iconRels: ['windows-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
         getStoreLink: () =>
           'http://www.windowsphone.com/s?appid=',
       },
       kindle: {
-        appMeta: 'kindle-fire-app',
+        appMeta: () => this.props.appMeta.kindle,
         iconRels: ['windows-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
         getStoreLink: () =>
           'amzn://apps/android?asin=',
@@ -145,7 +157,7 @@ class SmartBanner extends Component {
     }
 
     const meta = window.document.querySelector(
-      `meta[name="${this.state.settings.appMeta}"]`);
+      `meta[name="${this.state.settings.appMeta()}"]`);
 
     if (!meta) {
       return '';
