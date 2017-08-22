@@ -166,6 +166,19 @@ ReactDOM.render(&lt;SmartBanner title={'Facebook'} /&gt;, document.getElementByI
                   devices that support the native banner.
                 </td>
               </tr>
+              <tr>
+                <th scope="row">appMeta</th>
+                <td><code>{
+                  ios: 'apple-itunes-app',
+                  android: 'google-play-app',
+                  windows: 'msApplication-ID',
+                  kindle: 'kindle-fire-app'
+                }</code></td>
+                <td>
+                  The custom meta tag name (object).<br />
+                  It provide an option to enforce using custom meta tag to show js react-smartbanner for newer iOS versions.
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
