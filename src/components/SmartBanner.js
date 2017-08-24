@@ -25,13 +25,14 @@ class SmartBanner extends Component {
       windows: PropTypes.string,
       kindle: PropTypes.string,
     }),
+    onClose: PropTypes.func,
+    onInstall: PropTypes.func,
   };
 
   static defaultProps = {
     daysHidden: 15,
     daysReminder: 90,
-    appStoreLanguage: isClient ?
-      (window.navigator.language || window.navigator.userLanguage).slice(-2) || 'us' : 'us',
+    appStoreLanguage: isClient ? (window.navigator.language || window.navigator.userLanguage).slice(-2) || 'us' : 'us',
     button: 'View',
     storeText: {
       ios: 'On the App Store',
@@ -87,15 +88,15 @@ class SmartBanner extends Component {
     if (isClient) {
       const agent = ua(window.navigator.userAgent);
 
-      if (deviceType) { // force set case
+      if (deviceType) {
+        // force set case
         type = deviceType;
       } else if (agent.os.name === 'Windows Phone' || agent.os.name === 'Windows Mobile') {
         type = 'windows';
-      // iOS >= 6 has native support for Smart Banner
-      } else if (agent.os.name === 'iOS'
-        && (this.props.ignoreIosVersion
-          || parseInt(agent.os.version, 10) < 6
-          || agent.browser.name !== 'Mobile Safari')
+        // iOS >= 6 has native support for Smart Banner
+      } else if (
+        agent.os.name === 'iOS' &&
+        (this.props.ignoreIosVersion || parseInt(agent.os.version, 10) < 6 || agent.browser.name !== 'Mobile Safari')
       ) {
         type = 'ios';
       } else if (agent.device.vender === 'Amazon' || agent.browser.name === 'Silk') {
@@ -105,13 +106,16 @@ class SmartBanner extends Component {
       }
     }
 
-    this.setState({
-      type,
-    }, () => {
-      if (type) {
-        this.setSettingsByType();
+    this.setState(
+      {
+        type,
+      },
+      () => {
+        if (type) {
+          this.setSettingsByType();
+        }
       }
-    });
+    );
   }
 
   setSettingsByType() {
@@ -119,36 +123,35 @@ class SmartBanner extends Component {
       ios: {
         appMeta: () => this.props.appMeta.ios,
         iconRels: ['apple-touch-icon-precomposed', 'apple-touch-icon'],
-        getStoreLink: () =>
-          `https://itunes.apple.com/${this.props.appStoreLanguage}/app/id`,
+        getStoreLink: () => `https://itunes.apple.com/${this.props.appStoreLanguage}/app/id`,
       },
       android: {
         appMeta: () => this.props.appMeta.android,
         iconRels: ['android-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
-        getStoreLink: () =>
-          'http://play.google.com/store/apps/details?id=',
+        getStoreLink: () => 'http://play.google.com/store/apps/details?id=',
       },
       windows: {
         appMeta: () => this.props.appMeta.windows,
         iconRels: ['windows-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
-        getStoreLink: () =>
-          'http://www.windowsphone.com/s?appid=',
+        getStoreLink: () => 'http://www.windowsphone.com/s?appid=',
       },
       kindle: {
         appMeta: () => this.props.appMeta.kindle,
         iconRels: ['windows-touch-icon', 'apple-touch-icon-precomposed', 'apple-touch-icon'],
-        getStoreLink: () =>
-          'amzn://apps/android?asin=',
+        getStoreLink: () => 'amzn://apps/android?asin=',
       },
     };
 
-    this.setState({
-      settings: mixins[this.state.type],
-    }, () => {
-      if (this.state.type) {
-        this.parseAppId();
+    this.setState(
+      {
+        settings: mixins[this.state.type],
+      },
+      () => {
+        if (this.state.type) {
+          this.parseAppId();
+        }
       }
-    });
+    );
   }
 
   parseAppId() {
@@ -156,8 +159,7 @@ class SmartBanner extends Component {
       return '';
     }
 
-    const meta = window.document.querySelector(
-      `meta[name="${this.state.settings.appMeta()}"]`);
+    const meta = window.document.querySelector(`meta[name="${this.state.settings.appMeta()}"]`);
 
     if (!meta) {
       return '';
@@ -182,13 +184,13 @@ class SmartBanner extends Component {
     if (isClient) {
       window.document.querySelector('html').classList.remove('smartbanner-show');
     }
-  }
+  };
 
   show = () => {
     if (isClient) {
       window.document.querySelector('html').classList.add('smartbanner-show');
     }
-  }
+  };
 
   close = () => {
     this.hide();
@@ -196,7 +198,10 @@ class SmartBanner extends Component {
       path: '/',
       expires: +new Date() + this.props.daysHidden * 1000 * 60 * 60 * 24,
     });
-  }
+    if (this.props.onClose && typeof this.props.onClose === 'function') {
+      this.props.onClose();
+    }
+  };
 
   install = () => {
     this.hide();
@@ -204,7 +209,10 @@ class SmartBanner extends Component {
       path: '/',
       expires: +new Date() + this.props.daysReminder * 1000 * 60 * 60 * 24,
     });
-  }
+    if (this.props.onInstall && typeof this.props.onInstall === 'function') {
+      this.props.onInstall();
+    }
+  };
 
   retrieveInfo() {
     const link = this.props.url || this.state.settings.getStoreLink() + this.state.appId;
@@ -214,8 +222,7 @@ class SmartBanner extends Component {
 
     if (isClient) {
       for (let i = 0, max = this.state.settings.iconRels.length; i < max; i++) {
-        const rel = window.document.querySelector(
-          `link[rel="${this.state.settings.iconRels[i]}"]`);
+        const rel = window.document.querySelector(`link[rel="${this.state.settings.iconRels[i]}"]`);
 
         if (rel) {
           icon = rel.getAttribute('href');
@@ -241,10 +248,7 @@ class SmartBanner extends Component {
     // 2) website is loaded in app,
     // 3) user dismissed banner,
     // 4) or we have no app id in meta
-    if (!this.state.type
-      || window.navigator.standalone
-      || cookie.get('smartbanner-closed')
-      || cookie.get('smartbanner-installed')) {
+    if (!this.state.type || window.navigator.standalone || cookie.get('smartbanner-closed') || cookie.get('smartbanner-installed')) {
       return <div />;
     }
 
@@ -263,16 +267,26 @@ class SmartBanner extends Component {
     return (
       <div className={ wrapperClassName }>
         <div className="smartbanner-container">
-          <a className="smartbanner-close" onClick={ this.close }>&times;</a>
+          <a className="smartbanner-close" onClick={ this.close }>
+            &times;
+          </a>
           <span className="smartbanner-icon" style={ iconStyle } />
           <div className="smartbanner-info">
-            <div className="smartbanner-title">{this.props.title}</div>
-            <div className="smartbanner-author">{this.props.author}</div>
-            <div className="smartbanner-description" >{inStore}</div>
+            <div className="smartbanner-title">
+              {this.props.title}
+            </div>
+            <div className="smartbanner-author">
+              {this.props.author}
+            </div>
+            <div className="smartbanner-description">
+              {inStore}
+            </div>
           </div>
           <div className="smartbanner-wrapper">
             <a href={ link } onClick={ this.install } className="smartbanner-button">
-              <span className="smartbanner-button-text">{this.props.button}</span>
+              <span className="smartbanner-button-text">
+                {this.props.button}
+              </span>
             </a>
           </div>
         </div>

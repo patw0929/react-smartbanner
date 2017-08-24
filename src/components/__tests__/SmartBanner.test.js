@@ -10,7 +10,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import SmartBanner from '../SmartBanner';
 
-describe('SmartBanner', function () { // eslint-disable-line func-names
+describe('SmartBanner', function () {
   let cookie;
 
   beforeEach(() => {
@@ -39,14 +39,9 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
         ..._props,
       };
 
-      return mount(
-        <SmartBanner
-          { ...props }
-        />,
-        {
-          attachTo: document.getElementById('root'),
-        },
-      );
+      return mount(<SmartBanner { ...props } />, {
+        attachTo: document.getElementById('root'),
+      });
     };
   });
 
@@ -102,8 +97,10 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
 
   describe('close smartbanner', () => {
     it('should change html classList and set cookie after click the close button', () => {
+      const spy = jest.fn();
       const subject = this.makeSubject({
         force: 'android',
+        onClose: spy,
       });
 
       subject.find('.smartbanner-close').simulate('click');
@@ -113,13 +110,16 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
         path: '/',
         expires: 1495756800000,
       });
+      expect(spy).toHaveBeenCalled();
     });
   });
 
   describe('click install on smartbanner', () => {
     it('should change html classList and set cookie after click the close button', () => {
+      const spy = jest.fn();
       const subject = this.makeSubject({
         force: 'android',
+        onInstall: spy,
       });
 
       subject.find('.smartbanner-button').simulate('click');
@@ -129,6 +129,7 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
         path: '/',
         expires: 1502236800000,
       });
+      expect(spy).toHaveBeenCalled();
     });
   });
 
