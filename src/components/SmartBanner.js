@@ -25,6 +25,8 @@ class SmartBanner extends Component {
       windows: PropTypes.string,
       kindle: PropTypes.string,
     }),
+    onClose: PropTypes.func,
+    onInstall: PropTypes.func,
   };
 
   static defaultProps = {
@@ -196,6 +198,10 @@ class SmartBanner extends Component {
       path: '/',
       expires: +new Date() + this.props.daysHidden * 1000 * 60 * 60 * 24,
     });
+
+    if (this.props.onClose && typeof this.props.onClose === 'function') {
+      this.props.onClose();
+    }
   }
 
   install = () => {
@@ -204,6 +210,10 @@ class SmartBanner extends Component {
       path: '/',
       expires: +new Date() + this.props.daysReminder * 1000 * 60 * 60 * 24,
     });
+
+    if (this.props.onInstall && typeof this.props.onInstall === 'function') {
+      this.props.onInstall();
+    }
   }
 
   retrieveInfo() {
