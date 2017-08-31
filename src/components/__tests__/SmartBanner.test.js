@@ -102,8 +102,10 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
 
   describe('close smartbanner', () => {
     it('should change html classList and set cookie after click the close button', () => {
+      const spy = jest.fn();
       const subject = this.makeSubject({
         force: 'android',
+        onClose: spy,
       });
 
       subject.find('.smartbanner-close').simulate('click');
@@ -113,13 +115,16 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
         path: '/',
         expires: 1495756800000,
       });
+      expect(spy).toHaveBeenCalled();
     });
   });
 
   describe('click install on smartbanner', () => {
-    it('should change html classList and set cookie after click the close button', () => {
+    it('should change html classList and set cookie after click the install button', () => {
+      const spy = jest.fn();
       const subject = this.makeSubject({
         force: 'android',
+        onInstall: spy,
       });
 
       subject.find('.smartbanner-button').simulate('click');
@@ -129,6 +134,7 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
         path: '/',
         expires: 1502236800000,
       });
+      expect(spy).toHaveBeenCalled();
     });
   });
 
