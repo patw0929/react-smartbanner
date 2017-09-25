@@ -113,7 +113,7 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
       expect(window.document.querySelector('html').classList).not.toContain('smartbanner-show');
       expect(cookie.set).toBeCalledWith('smartbanner-closed', 'true', {
         path: '/',
-        expires: 1495756800000,
+        expires: 'Fri, 26 May 2017 00:00:00 GMT',
       });
       expect(spy).toHaveBeenCalled();
     });
@@ -132,7 +132,7 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
       expect(window.document.querySelector('html').classList).not.toContain('smartbanner-show');
       expect(cookie.set).toBeCalledWith('smartbanner-installed', 'true', {
         path: '/',
-        expires: 1502236800000,
+        expires: 'Thu, 24 Aug 2017 00:00:00 GMT',
       });
       expect(spy).toHaveBeenCalled();
     });

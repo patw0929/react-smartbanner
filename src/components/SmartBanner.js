@@ -6,6 +6,14 @@ const isClient = typeof window !== 'undefined';
 let ua;
 let cookie;
 
+const expiredDateInUTC = (additionalDays) => {
+  const expiredDate = new Date();
+
+  expiredDate.setDate(expiredDate.getDate() + additionalDays);
+
+  return expiredDate.toUTCString();
+};
+
 class SmartBanner extends Component {
   static propTypes = {
     daysHidden: PropTypes.number,
@@ -196,7 +204,7 @@ class SmartBanner extends Component {
     this.hide();
     cookie.set('smartbanner-closed', 'true', {
       path: '/',
-      expires: +new Date() + this.props.daysHidden * 1000 * 60 * 60 * 24,
+      expires: expiredDateInUTC(this.props.daysHidden),
     });
 
     if (this.props.onClose && typeof this.props.onClose === 'function') {
@@ -208,7 +216,7 @@ class SmartBanner extends Component {
     this.hide();
     cookie.set('smartbanner-installed', 'true', {
       path: '/',
-      expires: +new Date() + this.props.daysReminder * 1000 * 60 * 60 * 24,
+      expires: expiredDateInUTC(this.props.daysReminder),
     });
 
     if (this.props.onInstall && typeof this.props.onInstall === 'function') {
