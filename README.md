@@ -42,6 +42,14 @@ or
 yarn add react-smartbanner
 ```
 
+## Compatibility
+
+| react-smartbanner version | React version |
+| --- | --- |
+| `4.x.x` | `^16.0.0` |
+| `3.x.x` | `^15.0.0` |
+
+
 ## Usage
 
 Remember to add following meta tags in your HTML page: (Use Facebook app as example)
