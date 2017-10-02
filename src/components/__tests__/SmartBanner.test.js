@@ -101,14 +101,14 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
   });
 
   describe('close smartbanner', () => {
-    it('should change html classList and set cookie after click the close button', () => {
+    it('should change html classList and set cookie after invoke the close function', () => {
       const spy = jest.fn();
       const subject = this.makeSubject({
         force: 'android',
         onClose: spy,
       });
 
-      subject.find('.smartbanner-close').simulate('click');
+      subject.instance().close();
 
       expect(window.document.querySelector('html').classList).not.toContain('smartbanner-show');
       expect(cookie.set).toBeCalledWith('smartbanner-closed', 'true', {
@@ -120,14 +120,14 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
   });
 
   describe('click install on smartbanner', () => {
-    it('should change html classList and set cookie after click the install button', () => {
+    it('should change html classList and set cookie after invoke the install function', () => {
       const spy = jest.fn();
       const subject = this.makeSubject({
         force: 'android',
         onInstall: spy,
       });
 
-      subject.find('.smartbanner-button').simulate('click');
+      subject.instance().install();
 
       expect(window.document.querySelector('html').classList).not.toContain('smartbanner-show');
       expect(cookie.set).toBeCalledWith('smartbanner-installed', 'true', {
