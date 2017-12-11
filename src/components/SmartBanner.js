@@ -25,7 +25,7 @@ class SmartBanner extends Component {
     force: PropTypes.string,
     title: PropTypes.string,
     author: PropTypes.string,
-    url: PropTypes.string,
+    url: PropTypes.objectOf(PropTypes.string),
     ignoreIosVersion: PropTypes.bool,
     appMeta: PropTypes.shape({
       android: PropTypes.string,
@@ -58,6 +58,12 @@ class SmartBanner extends Component {
     force: '',
     title: '',
     author: '',
+    url: {
+      ios: '',
+      android: '',
+      windows: '',
+      kindle: '',
+    },
     appMeta: {
       ios: 'apple-itunes-app',
       android: 'google-play-app',
@@ -225,7 +231,7 @@ class SmartBanner extends Component {
   }
 
   retrieveInfo() {
-    const link = this.props.url || this.state.settings.getStoreLink() + this.state.appId;
+    const link = `${this.props.url[this.state.type]}` || this.state.settings.getStoreLink() + this.state.appId;
     const inStore = `
       ${this.props.price[this.state.type]} - ${this.props.storeText[this.state.type]}`;
     let icon;
