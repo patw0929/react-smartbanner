@@ -139,7 +139,7 @@ ReactDOM.render(&lt;SmartBanner title={'Facebook'} /&gt;, document.getElementByI
                   ios: 'FREE',
                   android: 'FREE',
                   windows: 'FREE',
-                  kindle: 'FREE
+                  kindle: 'FREE'
                 }</code></td>
                 <td>Price text (object).</td>
               </tr>
@@ -153,9 +153,16 @@ ReactDOM.render(&lt;SmartBanner title={'Facebook'} /&gt;, document.getElementByI
               </tr>
               <tr>
                 <th scope="row">url</th>
-                <td><code>''</code></td>
+                <td><code>
+                    {
+                      ios: 'http://www.domain.com',
+                      android: 'http://www.domain2.com',
+                      windows: 'http://www.domain3.com',
+                      kindle: 'http://www.domain4.com'
+                    }
+                  </code></td>
                 <td>
-                  Custom URL.
+                  Custom URL for each device
                 </td>
               </tr>
               <tr>

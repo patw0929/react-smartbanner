@@ -16,7 +16,7 @@ To build the examples locally, run:
 
 ```bash
 npm install
-npm run example
+npm start
 ```
 
 or
