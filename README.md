@@ -46,8 +46,8 @@ yarn add react-smartbanner
 
 | react-smartbanner version | React version |
 | --- | --- |
-| `4.x.x` | `^16.0.0` |
-| `3.x.x` | `^15.0.0` |
+| `4.x.x+` | `^16.0.0` |
+| `3.x.x`  | `^15.0.0` |
 
 
 ## Usage
