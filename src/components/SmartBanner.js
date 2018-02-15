@@ -184,7 +184,9 @@ class SmartBanner extends Component {
     if (this.state.type === 'windows') {
       appId = meta.getAttribute('content');
     } else {
-      appId = /app-id=([^\s,]+)/.exec(meta.getAttribute('content'))[1];
+      const content = /app-id=([^\s,]+)/.exec(meta.getAttribute('content'));
+
+      appId = (content && content[1]) ? content[1] : appId;
     }
 
     this.setState({
