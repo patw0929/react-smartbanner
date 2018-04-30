@@ -19,7 +19,7 @@ class SmartBanner extends Component {
     daysHidden: PropTypes.number,
     daysReminder: PropTypes.number,
     appStoreLanguage: PropTypes.string,
-    button: PropTypes.string,
+    button: PropTypes.node,
     storeText: PropTypes.objectOf(PropTypes.string),
     price: PropTypes.objectOf(PropTypes.string),
     force: PropTypes.string,
