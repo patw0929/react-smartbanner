@@ -5,10 +5,10 @@ $smartbanner-icon-size: 57px;
 $smartbanner-button-size: 110px;
 
 .smartbanner-show {
-  &.top {
+  &.smartbanner-margin-top {
     margin-top: 80px;
   }
-  &.bottom {
+  &.smartbanner-margin-bottom {
     margin-bottom: 80px;
   }
 

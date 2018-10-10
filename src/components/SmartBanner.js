@@ -98,11 +98,11 @@ class SmartBanner extends Component {
       this.setType(nextProps.force);
     }
     if (nextProps.position === 'top') {
-      window.document.querySelector('html').classList.add('top');
-      window.document.querySelector('html').classList.remove('bottom');
+      window.document.querySelector('html').classList.add('smartbanner-margin-top');
+      window.document.querySelector('html').classList.remove('smartbanner-margin-bottom');
     } else if (nextProps.position === 'bottom') {
-      window.document.querySelector('html').classList.add('bottom');
-      window.document.querySelector('html').classList.remove('top');
+      window.document.querySelector('html').classList.add('smartbanner-margin-bottom');
+      window.document.querySelector('html').classList.remove('smartbanner-margin-top');
     }
   }
 
