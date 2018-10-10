@@ -25,6 +25,7 @@ class SmartBanner extends Component {
     force: PropTypes.string,
     title: PropTypes.string,
     author: PropTypes.string,
+    position: PropTypes.string,
     url: PropTypes.objectOf(PropTypes.string),
     ignoreIosVersion: PropTypes.bool,
     appMeta: PropTypes.shape({
@@ -58,6 +59,7 @@ class SmartBanner extends Component {
     force: '',
     title: '',
     author: '',
+    position: 'top',
     url: {
       ios: '',
       android: '',
@@ -94,6 +96,13 @@ class SmartBanner extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.force !== this.props.force) {
       this.setType(nextProps.force);
+    }
+    if (nextProps.position === 'top') {
+      window.document.querySelector('html').classList.add('top');
+      window.document.querySelector('html').classList.remove('bottom');
+    } else if (nextProps.position === 'bottom') {
+      window.document.querySelector('html').classList.add('bottom');
+      window.document.querySelector('html').classList.remove('top');
     }
   }
 
@@ -281,7 +290,7 @@ class SmartBanner extends Component {
     this.show();
 
     const { icon, link, inStore } = this.retrieveInfo();
-    const wrapperClassName = `smartbanner smartbanner-${this.state.type}`;
+    const wrapperClassName = `smartbanner smartbanner-${this.state.type} smartbanner-${this.props.position}`;
     const iconStyle = {
       backgroundImage: `url(${icon})`,
     };
