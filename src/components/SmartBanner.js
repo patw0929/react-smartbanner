@@ -106,6 +106,14 @@ class SmartBanner extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const documentRoot = window.document.querySelector('html');
+
+    documentRoot.classList.remove('smartbanner-show');
+    documentRoot.classList.remove('smartbanner-margin-top');
+    documentRoot.classList.remove('smartbanner-margin-bottom');
+  }
+
   setType(deviceType) {
     let type;
 
