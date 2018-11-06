@@ -8,6 +8,7 @@ $smartbanner-button-size: 110px;
   &.smartbanner-margin-top {
     margin-top: 80px;
   }
+
   &.smartbanner-margin-bottom {
     margin-bottom: 80px;
   }
@@ -58,6 +59,8 @@ $smartbanner-button-size: 110px;
   text-decoration: none;
   border: 0;
   border-radius: 14px;
+  padding: 0 0 1px;
+  background-color: transparent;
   -webkit-font-smoothing: subpixel-antialiased;
 
   &:active,

@@ -1,21 +1,21 @@
 exports[`SmartBanner type snapshots should be matched the snapshot (android) 1`] = `
-"<div class=\"smartbanner smartbanner-android\"><div class=\"smartbanner-container\"><a class=\"smartbanner-close\">×</a><span class=\"smartbanner-icon\" style=\"background-image: url(undefined);\"></span><div class=\"smartbanner-info\"><div class=\"smartbanner-title\"></div><div class=\"smartbanner-author\"></div><div class=\"smartbanner-description\">
-      Free - In Google Play</div></div><div class=\"smartbanner-wrapper\"><a href=\"undefined\" class=\"smartbanner-button\"><span class=\"smartbanner-button-text\">View</span></a></div></div></div>"
+"<div class="smartbanner smartbanner-android smartbanner-top"><div class="smartbanner-container"><button class="smartbanner-close">×</button><span class="smartbanner-icon" style="background-image: url(undefined);"></span><div class="smartbanner-info"><div class="smartbanner-title"></div><div class="smartbanner-author"></div><div class="smartbanner-description">
+      Free - In Google Play</div></div><div class="smartbanner-wrapper"><a href="undefined" class="smartbanner-button"><span class="smartbanner-button-text">View</span></a></div></div></div>"
 `;
 
 exports[`SmartBanner type snapshots should be matched the snapshot (ios) 1`] = `
-"<div class=\"smartbanner smartbanner-ios\"><div class=\"smartbanner-container\"><a class=\"smartbanner-close\">×</a><span class=\"smartbanner-icon\" style=\"background-image: url(undefined);\"></span><div class=\"smartbanner-info\"><div class=\"smartbanner-title\"></div><div class=\"smartbanner-author\"></div><div class=\"smartbanner-description\">
-      Free - On the App Store</div></div><div class=\"smartbanner-wrapper\"><a href=\"undefined\" class=\"smartbanner-button\"><span class=\"smartbanner-button-text\">View</span></a></div></div></div>"
+"<div class="smartbanner smartbanner-ios smartbanner-top"><div class="smartbanner-container"><button class="smartbanner-close">×</button><span class="smartbanner-icon" style="background-image: url(undefined);"></span><div class="smartbanner-info"><div class="smartbanner-title"></div><div class="smartbanner-author"></div><div class="smartbanner-description">
+      Free - On the App Store</div></div><div class="smartbanner-wrapper"><a href="undefined" class="smartbanner-button"><span class="smartbanner-button-text">View</span></a></div></div></div>"
 `;
 
 exports[`SmartBanner type snapshots should be matched the snapshot (kindle) 1`] = `
-"<div class=\"smartbanner smartbanner-kindle\"><div class=\"smartbanner-container\"><a class=\"smartbanner-close\">×</a><span class=\"smartbanner-icon\" style=\"background-image: url(undefined);\"></span><div class=\"smartbanner-info\"><div class=\"smartbanner-title\"></div><div class=\"smartbanner-author\"></div><div class=\"smartbanner-description\">
-      Free - In the Amazon Appstore</div></div><div class=\"smartbanner-wrapper\"><a href=\"undefined\" class=\"smartbanner-button\"><span class=\"smartbanner-button-text\">View</span></a></div></div></div>"
+"<div class="smartbanner smartbanner-kindle smartbanner-top"><div class="smartbanner-container"><button class="smartbanner-close">×</button><span class="smartbanner-icon" style="background-image: url(undefined);"></span><div class="smartbanner-info"><div class="smartbanner-title"></div><div class="smartbanner-author"></div><div class="smartbanner-description">
+      Free - In the Amazon Appstore</div></div><div class="smartbanner-wrapper"><a href="undefined" class="smartbanner-button"><span class="smartbanner-button-text">View</span></a></div></div></div>"
 `;
 
 exports[`SmartBanner type snapshots should be matched the snapshot (no type) 1`] = `"<div></div>"`;
 
 exports[`SmartBanner type snapshots should be matched the snapshot (windows) 1`] = `
-"<div class=\"smartbanner smartbanner-windows\"><div class=\"smartbanner-container\"><a class=\"smartbanner-close\">×</a><span class=\"smartbanner-icon\" style=\"background-image: url(undefined);\"></span><div class=\"smartbanner-info\"><div class=\"smartbanner-title\"></div><div class=\"smartbanner-author\"></div><div class=\"smartbanner-description\">
+"<div class=\"smartbanner smartbanner-windows smartbanner-top\"><div class=\"smartbanner-container\"><button class=\"smartbanner-close\">×</button><span class=\"smartbanner-icon\" style=\"background-image: url(undefined);\"></span><div class=\"smartbanner-info\"><div class=\"smartbanner-title\"></div><div class=\"smartbanner-author\"></div><div class=\"smartbanner-description\">
       Free - In Windows Store</div></div><div class=\"smartbanner-wrapper\"><a href=\"undefined\" class=\"smartbanner-button\"><span class=\"smartbanner-button-text\">View</span></a></div></div></div>"
 `;
