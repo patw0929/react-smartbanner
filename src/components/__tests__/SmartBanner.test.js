@@ -30,7 +30,7 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
       force: '',
       title: '',
       author: '',
-      url: '',
+      url: {},
     };
 
     this.makeSubject = (_props = {}) => {
