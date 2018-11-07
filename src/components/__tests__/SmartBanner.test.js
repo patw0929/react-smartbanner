@@ -160,6 +160,15 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
     expect(subject.state('type')).toBe('ios');
   });
 
+  it('should remove html class names on unload', () => {
+    const subject = this.makeSubject();
+
+    subject.unmount();
+    expect(window.document.querySelector('html').classList).not.toContain('smartbanner-show');
+    expect(window.document.querySelector('html').classList).not.toContain('smartbanner-margin-top');
+    expect(window.document.querySelector('html').classList).not.toContain('smartbanner-margin-bottom');
+  });
+
   describe('userAgent', () => {
     it('should change type to "ios" if we set iOS user agent', () => {
       window.navigator.__defineGetter__('userAgent', () => {
