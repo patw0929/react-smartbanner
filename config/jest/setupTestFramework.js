@@ -13,4 +13,3 @@ if (process.env.CI) {
 
   jasmine.getEnv().addReporter(junitReporter);
 }
-
