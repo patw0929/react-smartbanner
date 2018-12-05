@@ -10,7 +10,8 @@ import React from 'react';
 import { mount } from 'enzyme';
 import SmartBanner from '../SmartBanner';
 
-describe('SmartBanner', function () { // eslint-disable-line func-names
+// eslint-disable-next-line func-names
+describe('SmartBanner', function() {
   let cookie;
 
   beforeEach(() => {
@@ -39,14 +40,9 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
         ..._props,
       };
 
-      return mount(
-        <SmartBanner
-          { ...props }
-        />,
-        {
-          attachTo: document.getElementById('root'),
-        },
-      );
+      return mount(<SmartBanner {...props} />, {
+        attachTo: document.getElementById('root'),
+      });
     };
   });
 
@@ -110,7 +106,9 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
 
       subject.instance().close();
 
-      expect(window.document.querySelector('html').classList).not.toContain('smartbanner-show');
+      expect(window.document.querySelector('html').classList).not.toContain(
+        'smartbanner-show'
+      );
       expect(cookie.set).toBeCalledWith('smartbanner-closed', 'true', {
         path: '/',
         expires: 'Fri, 26 May 2017 00:00:00 GMT',
@@ -129,7 +127,9 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
 
       subject.instance().install();
 
-      expect(window.document.querySelector('html').classList).not.toContain('smartbanner-show');
+      expect(window.document.querySelector('html').classList).not.toContain(
+        'smartbanner-show'
+      );
       expect(cookie.set).toBeCalledWith('smartbanner-installed', 'true', {
         path: '/',
         expires: 'Thu, 24 Aug 2017 00:00:00 GMT',
@@ -164,9 +164,15 @@ describe('SmartBanner', function () { // eslint-disable-line func-names
     const subject = this.makeSubject();
 
     subject.unmount();
-    expect(window.document.querySelector('html').classList).not.toContain('smartbanner-show');
-    expect(window.document.querySelector('html').classList).not.toContain('smartbanner-margin-top');
-    expect(window.document.querySelector('html').classList).not.toContain('smartbanner-margin-bottom');
+    expect(window.document.querySelector('html').classList).not.toContain(
+      'smartbanner-show'
+    );
+    expect(window.document.querySelector('html').classList).not.toContain(
+      'smartbanner-margin-top'
+    );
+    expect(window.document.querySelector('html').classList).not.toContain(
+      'smartbanner-margin-bottom'
+    );
   });
 
   describe('userAgent', () => {
