@@ -6,6 +6,8 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var safeParser = require('postcss-safe-parser');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var getClientEnvironment = require('./env');
 
@@ -172,7 +174,14 @@ module.exports = {
         cache: true,
         sourceMap: false,
       }),
-      new OptimizeCSSAssetsPlugin({ cssProcessorOptions: { safe: true } }),
+      new OptimizeCssAssetsPlugin({
+        cssProcessorOptions: {
+          parser: safeParser,
+          discardComments: {
+            removeAll: true,
+          },
+        },
+      }),
     ],
     // Automatically split vendor and commons
     // https://twitter.com/wSokra/status/969633336732905474
