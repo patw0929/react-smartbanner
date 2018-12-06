@@ -5,63 +5,61 @@
  * the subfolder /webpack-dev-server/ is visited. Visiting the root will not automatically reload.
  */
 
-var webpack = require('webpack');
-var paths = require('./paths');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-var getClientEnvironment = require('./env');
+const webpack = require('webpack');
+const paths = require('./paths');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+const getClientEnvironment = require('./env');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
-var publicPath = '/';
+const publicPath = '/';
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing shlash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
-var publicUrl = '';
+const publicUrl = '';
 // Get enrivonment variables to inject into our app.
-var env = getClientEnvironment(publicUrl);
+const env = getClientEnvironment(publicUrl);
 
 module.exports = {
+  mode: 'development',
   devtool: 'cheap-module-source-map',
   entry: [
     require.resolve('react-dev-utils/webpackHotDevClient'),
     require.resolve('./polyfills'),
-    paths.appExampleJs
+    paths.appExampleJs,
   ],
 
   output: {
     path: paths.appBuild,
     pathinfo: true,
     filename: 'static/js/bundle.js',
-    publicPath: publicPath
+    publicPath: publicPath,
   },
 
   externals: {
     react: 'React',
-    'react-dom': 'ReactDOM'
+    'react-dom': 'ReactDOM',
   },
 
   resolve: {
-    modules: [
-      'src',
-      'node_modules',
-      ...paths.nodePaths,
-    ],
+    modules: ['src', 'node_modules', ...paths.nodePaths],
     alias: {
       'react-smartbanner': './components/SmartBanner.js',
     },
-    // root: __dirname + '/src',
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'eslint-loader',
         enforce: 'pre',
         include: paths.appSrc,
+        use: {
+          loader: 'eslint-loader',
+        },
       },
       {
         exclude: [
@@ -71,19 +69,20 @@ module.exports = {
           /\.scss$/,
           /\.json$/,
           /\.png$/,
-          /\.svg$/
+          /\.svg$/,
         ],
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]'
-        }
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
       },
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
-        loader: 'babel-loader',
-        options: require('./babel.dev') // eslint-disable-line global-require
+        use: {
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.scss$/,
@@ -95,12 +94,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-        ],
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
-    ]
+    ],
   },
 
   plugins: [
@@ -108,15 +104,13 @@ module.exports = {
       /^\.\/main\.css$/,
       '../dist/main.css'
     ),
-    new CopyWebpackPlugin([
-      { from: 'src/icon.png', to: './' },
-    ]),
-    new InterpolateHtmlPlugin({
-      PUBLIC_URL: publicUrl,
-    }),
+    new CopyWebpackPlugin([{ from: 'src/icon.png', to: './' }]),
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
+    }),
+    new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
+      PUBLIC_URL: publicUrl,
     }),
     new webpack.DefinePlugin(env),
     new webpack.HotModuleReplacementPlugin(),
@@ -126,6 +120,6 @@ module.exports = {
   node: {
     fs: 'empty',
     net: 'empty',
-    tls: 'empty'
-  }
+    tls: 'empty',
+  },
 };
