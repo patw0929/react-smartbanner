@@ -124,7 +124,11 @@ module.exports = {
         uglifyOptions: {
           compress: true,
           ecma: 6,
-          mangle: true
+          mangle: true,
+          output: {
+            comments: false,
+            beautify: false,
+          },
         },
         sourceMap: false,
       }),
