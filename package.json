@@ -75,7 +75,7 @@
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "~0.5.7",
     "webpack": "^4.27.0",
-    "webpack-dev-server": "1.16.2"
+    "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
     "build": "node scripts/build.js",
