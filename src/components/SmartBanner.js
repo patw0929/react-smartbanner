@@ -349,7 +349,7 @@ class SmartBanner extends Component {
     return (
       <div className={wrapperClassName}>
         <div className="smartbanner-container">
-          <button type="button" className="smartbanner-close" onClick={this.close}>
+          <button type="button" className="smartbanner-close" aria-label="close" onClick={this.close}>
             &times;
           </button>
           <span className="smartbanner-icon" style={iconStyle} />
