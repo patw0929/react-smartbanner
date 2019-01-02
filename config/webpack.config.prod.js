@@ -42,6 +42,7 @@ module.exports = {
     publicPath: publicPath,
     library: 'SmartBanner',
     libraryTarget: 'umd',
+    globalObject: 'typeof self !== \'undefined\' ? self : this',
   },
 
   externals: {
