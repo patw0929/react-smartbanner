@@ -92,11 +92,11 @@ class SmartBanner extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.setType(this.props.force);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.force !== this.props.force) {
       this.setType(nextProps.force);
     }

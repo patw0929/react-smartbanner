@@ -8,6 +8,15 @@ module.exports = {
     jest: true,
   },
   rules: {
+    'camelcase': ["error", { allow: ["^UNSAFE_"]}],
+    'react/sort-comp': [1, {
+      order: [
+        'static-methods',
+        'lifecycle',
+        '/^UNSAFE_/',
+        'everything-else'
+      ],
+    }],
     'prefer-destructuring': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
