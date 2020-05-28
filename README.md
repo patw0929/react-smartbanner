@@ -7,7 +7,6 @@
 
 Rewrite [Smart App Banner](https://github.com/kudago/smart-app-banner) in React.js.
 
-
 ## Demo & Examples
 
 Live demo: [patw0929.github.io/react-smartbanner](https://patw0929.github.io/react-smartbanner/)
@@ -45,10 +44,9 @@ yarn add react-smartbanner
 ## Compatibility
 
 | react-smartbanner version | React version |
-| --- | --- |
-| `4.x.x+` | `^16.0.0` |
-| `3.x.x`  | `^15.0.0` |
-
+| ------------------------- | ------------- |
+| `4.x.x+`                  | `^16.0.0`     |
+| `3.x.x`                   | `^15.0.0`     |
 
 ## Usage
 
@@ -56,13 +54,19 @@ Remember to add following meta tags in your HTML page: (Use Facebook app as exam
 
 ```html
 <head>
-  <meta name="apple-itunes-app" content="app-id=284882215">
-  <meta name="google-play-app" content="app-id=com.facebook.katana">
-  <meta name="msApplication-ID" content="82a23635-5bd9-df11-a844-00237de2db9e">
-  <meta name="msApplication-PackageFamilyName" content="facebook_9wzdncrfhv5g">
-  <link rel="apple-touch-icon" href="icon.png">
-  <link rel="android-touch-icon" href="icon.png">
-  <link rel="windows-touch-icon" href="icon.png">
+  <meta name="apple-itunes-app" content="app-id=284882215" />
+  <meta name="google-play-app" content="app-id=com.facebook.katana" />
+  <meta
+    name="msApplication-ID"
+    content="82a23635-5bd9-df11-a844-00237de2db9e"
+  />
+  <meta
+    name="msApplication-PackageFamilyName"
+    content="facebook_9wzdncrfhv5g"
+  />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <link rel="android-touch-icon" href="icon.png" />
+  <link rel="windows-touch-icon" href="icon.png" />
 </head>
 ```
 
@@ -72,15 +76,16 @@ And React-SmartBanner component usage:
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SmartBanner from 'react-smartbanner';
-import 'react-smartbanner/dist/main.css';
 
-ReactDOM.render(<SmartBanner title={'Facebook'} />, document.getElementById('content'));
+ReactDOM.render(
+  <SmartBanner title={'Facebook'} />,
+  document.getElementById('content')
+);
 ```
 
 ### Properties
 
 Please see the [Demo Page](https://patw0929.github.io/react-smartbanner/)
-
 
 ## Development (`src` and the build process)
 
@@ -125,4 +130,3 @@ yarn run lint
 MIT
 
 Copyright (c) 2015-2019 patw.
-

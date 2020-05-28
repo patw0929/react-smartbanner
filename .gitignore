@@ -4,6 +4,7 @@
 ### JetBrains ###
 .idea
 
+.cache
 ### OSX ###
 .DS_Store
 .AppleDouble

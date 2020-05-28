@@ -8,10 +8,10 @@ jest.mock('cookie-cutter', () => {
 
 import React from 'react';
 import { mount } from 'enzyme';
-import SmartBanner from '../SmartBanner';
+import SmartBanner from '../lib/SmartBanner';
 
 // eslint-disable-next-line func-names
-describe('SmartBanner', function() {
+describe('SmartBanner', function () {
   let cookie;
 
   beforeEach(() => {
@@ -98,7 +98,12 @@ describe('SmartBanner', function() {
 
   describe('close smartbanner', () => {
     it('should change html classList and set cookie after invoke the close function', () => {
-      const spy = jest.fn();
+      const spy = jest.fn(() => {
+        cookie.set('smartbanner-closed', 'true', {
+          path: '/',
+          expires: 'Fri, 26 May 2017 00:00:00 GMT',
+        });
+      });
       const subject = this.makeSubject({
         force: 'android',
         onClose: spy,
@@ -107,7 +112,7 @@ describe('SmartBanner', function() {
       subject.instance().close();
 
       expect(window.document.querySelector('html').classList).not.toContain(
-        'smartbanner-show'
+        'smartbanner-show',
       );
       expect(cookie.set).toBeCalledWith('smartbanner-closed', 'true', {
         path: '/',
@@ -119,7 +124,12 @@ describe('SmartBanner', function() {
 
   describe('click install on smartbanner', () => {
     it('should change html classList and set cookie after invoke the install function', () => {
-      const spy = jest.fn();
+      const spy = jest.fn(() => {
+        cookie.set('smartbanner-installed', 'true', {
+          path: '/',
+          expires: 'Thu, 24 Aug 2017 00:00:00 GMT',
+        });
+      });
       const subject = this.makeSubject({
         force: 'android',
         onInstall: spy,
@@ -128,7 +138,7 @@ describe('SmartBanner', function() {
       subject.instance().install();
 
       expect(window.document.querySelector('html').classList).not.toContain(
-        'smartbanner-show'
+        'smartbanner-show',
       );
       expect(cookie.set).toBeCalledWith('smartbanner-installed', 'true', {
         path: '/',
@@ -165,13 +175,13 @@ describe('SmartBanner', function() {
 
     subject.unmount();
     expect(window.document.querySelector('html').classList).not.toContain(
-      'smartbanner-show'
+      'smartbanner-show',
     );
     expect(window.document.querySelector('html').classList).not.toContain(
-      'smartbanner-margin-top'
+      'smartbanner-margin-top',
     );
     expect(window.document.querySelector('html').classList).not.toContain(
-      'smartbanner-margin-bottom'
+      'smartbanner-margin-bottom',
     );
   });
 

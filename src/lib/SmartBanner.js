@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/style.scss';
+import ua from 'ua-parser-js';
+import cookie from 'cookie-cutter';
+
+import './style.css';
 
 const isClient = typeof window !== 'undefined';
-let ua;
-let cookie;
-
-const expiredDateInUTC = additionalDays => {
+const expiredDateInUTC = (additionalDays) => {
   const expiredDate = new Date();
 
   expiredDate.setDate(expiredDate.getDate() + additionalDays);
@@ -15,75 +15,8 @@ const expiredDateInUTC = additionalDays => {
 };
 
 class SmartBanner extends Component {
-  static propTypes = {
-    daysHidden: PropTypes.number,
-    daysReminder: PropTypes.number,
-    appStoreLanguage: PropTypes.string,
-    button: PropTypes.node,
-    storeText: PropTypes.objectOf(PropTypes.string),
-    price: PropTypes.objectOf(PropTypes.string),
-    force: PropTypes.string,
-    title: PropTypes.string,
-    author: PropTypes.string,
-    position: PropTypes.string,
-    url: PropTypes.objectOf(PropTypes.string),
-    ignoreIosVersion: PropTypes.bool,
-    appMeta: PropTypes.shape({
-      android: PropTypes.string,
-      ios: PropTypes.string,
-      windows: PropTypes.string,
-      kindle: PropTypes.string,
-    }),
-    onClose: PropTypes.func,
-    onInstall: PropTypes.func,
-  };
-
-  static defaultProps = {
-    daysHidden: 15,
-    daysReminder: 90,
-    appStoreLanguage: isClient
-      ? (window.navigator.language || window.navigator.userLanguage).slice(
-        -2
-      ) || 'us'
-      : 'us',
-    button: 'View',
-    storeText: {
-      ios: 'On the App Store',
-      android: 'In Google Play',
-      windows: 'In Windows Store',
-      kindle: 'In the Amazon Appstore',
-    },
-    price: {
-      ios: 'Free',
-      android: 'Free',
-      windows: 'Free',
-      kindle: 'Free',
-    },
-    force: '',
-    title: '',
-    author: '',
-    position: 'top',
-    url: {
-      ios: '',
-      android: '',
-      windows: '',
-      kindle: '',
-    },
-    appMeta: {
-      ios: 'apple-itunes-app',
-      android: 'google-play-app',
-      windows: 'msApplication-ID',
-      kindle: 'kindle-fire-app',
-    },
-  };
-
   constructor(props) {
     super(props);
-
-    if (!__SERVER__) {
-      ua = require('ua-parser-js'); // eslint-disable-line global-require
-      cookie = require('cookie-cutter'); // eslint-disable-line global-require
-    }
 
     this.state = {
       type: '',
@@ -165,7 +98,7 @@ class SmartBanner extends Component {
         if (type) {
           this.setSettingsByType();
         }
-      }
+      },
     );
   }
 
@@ -206,13 +139,16 @@ class SmartBanner extends Component {
       },
     };
 
-    this.setState(prevState => ({
-      settings: mixins[prevState.type],
-    }), () => {
-      if (this.state.type) {
-        this.parseAppId();
-      }
-    });
+    this.setState(
+      (prevState) => ({
+        settings: mixins[prevState.type],
+      }),
+      () => {
+        if (this.state.type) {
+          this.parseAppId();
+        }
+      },
+    );
   }
 
   hide = () => {
@@ -259,7 +195,7 @@ class SmartBanner extends Component {
     }
 
     const meta = window.document.querySelector(
-      `meta[name="${this.state.settings.appMeta()}"]`
+      `meta[name="${this.state.settings.appMeta()}"]`,
     );
 
     if (!meta) {
@@ -291,12 +227,13 @@ class SmartBanner extends Component {
       ${this.props.price[this.state.type]} - ${
   this.props.storeText[this.state.type]
 }`;
+
     let icon;
 
     if (isClient) {
       for (let i = 0, max = this.state.settings.iconRels.length; i < max; i++) {
         const rel = window.document.querySelector(
-          `link[rel="${this.state.settings.iconRels[i]}"]`
+          `link[rel="${this.state.settings.iconRels[i]}"]`,
         );
 
         if (rel) {
@@ -339,9 +276,7 @@ class SmartBanner extends Component {
     this.show();
 
     const { icon, link, inStore } = this.retrieveInfo();
-    const wrapperClassName = `smartbanner smartbanner-${
-      this.state.type
-    } smartbanner-${this.props.position}`;
+    const wrapperClassName = `smartbanner smartbanner-${this.state.type} smartbanner-${this.props.position}`;
     const iconStyle = {
       backgroundImage: `url(${icon})`,
     };
@@ -349,7 +284,12 @@ class SmartBanner extends Component {
     return (
       <div className={wrapperClassName}>
         <div className="smartbanner-container">
-          <button type="button" className="smartbanner-close" aria-label="close" onClick={this.close}>
+          <button
+            type="button"
+            className="smartbanner-close"
+            aria-label="close"
+            onClick={this.close}
+          >
             &times;
           </button>
           <span className="smartbanner-icon" style={iconStyle} />
@@ -374,5 +314,66 @@ class SmartBanner extends Component {
     );
   }
 }
+
+SmartBanner.propTypes = {
+  daysHidden: PropTypes.number,
+  daysReminder: PropTypes.number,
+  appStoreLanguage: PropTypes.string,
+  button: PropTypes.node,
+  storeText: PropTypes.objectOf(PropTypes.string),
+  price: PropTypes.objectOf(PropTypes.string),
+  force: PropTypes.string,
+  title: PropTypes.string,
+  author: PropTypes.string,
+  position: PropTypes.string,
+  url: PropTypes.objectOf(PropTypes.string),
+  ignoreIosVersion: PropTypes.bool,
+  appMeta: PropTypes.shape({
+    android: PropTypes.string,
+    ios: PropTypes.string,
+    windows: PropTypes.string,
+    kindle: PropTypes.string,
+  }),
+  onClose: PropTypes.func,
+  onInstall: PropTypes.func,
+};
+
+SmartBanner.defaultProps = {
+  daysHidden: 15,
+  daysReminder: 90,
+  appStoreLanguage: isClient
+    ? (window.navigator.language || window.navigator.userLanguage).slice(-2) ||
+      'us'
+    : 'us',
+  button: 'View',
+  storeText: {
+    ios: 'On the App Store',
+    android: 'In Google Play',
+    windows: 'In Windows Store',
+    kindle: 'In the Amazon Appstore',
+  },
+  price: {
+    ios: 'Free',
+    android: 'Free',
+    windows: 'Free',
+    kindle: 'Free',
+  },
+  force: '',
+  title: '',
+  author: '',
+  position: 'top',
+  url: {
+    ios: '',
+    android: '',
+    windows: '',
+    kindle: '',
+  },
+  appMeta: {
+    ios: 'apple-itunes-app',
+    android: 'google-play-app',
+    windows: 'msApplication-ID',
+    kindle: 'kindle-fire-app',
+  },
+};
 
 export default SmartBanner;

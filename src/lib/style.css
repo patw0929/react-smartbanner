@@ -1,0 +1,324 @@
+/* These styles were extracted from the 'react-smartbanner' package to live here
+  So they can be customized somehow...
+ */
+
+.smartbanner-show.smartbanner-margin-top {
+  margin-top: 80px;
+}
+
+.smartbanner-show.smartbanner-margin-bottom {
+  margin-bottom: 80px;
+}
+
+.smartbanner-show .smartbanner {
+  display: block;
+}
+
+.smartbanner {
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  font-family: Helvetica Neue, sans-serif;
+  background: rgb(244, 244, 244);
+  z-index: 9998;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  -webkit-text-size-adjust: none;
+}
+
+.smartbanner-top {
+  position: absolute;
+  top: 0;
+}
+
+.smartbanner-bottom {
+  position: fixed;
+  bottom: 0;
+}
+
+.smartbanner-container {
+  margin: 0 auto;
+  padding: 0 5px;
+}
+
+.smartbanner-close {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px 0 0;
+  font-family: ArialRoundedMTBold, Arial;
+  font-size: 20px;
+  text-align: center;
+  color: rgb(136, 136, 136);
+  text-decoration: none;
+  border: 0;
+  border-radius: 14px;
+  padding: 0 0 1px;
+  background-color: transparent;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.smartbanner-close:active,
+.smartbanner-close:hover {
+  color: rgb(170, 170, 170);
+}
+
+.smartbanner-icon {
+  width: 57px;
+  height: 57px;
+  margin-right: 12px;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.smartbanner-icon,
+.smartbanner-info {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.smartbanner-info {
+  white-space: normal;
+  width: calc(99% - 201px);
+  font-size: 11px;
+  line-height: 1.2em;
+  font-weight: 700;
+}
+
+.smartbanner-wrapper {
+  max-width: 110px;
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+}
+
+.smartbanner-title {
+  font-size: 13px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.smartbanner-description {
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.smartbanner-author {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.smartbanner-author:empty + .smartbanner-description {
+  max-height: 50px;
+}
+
+.smartbanner-button {
+  margin: auto 0;
+  height: 24px;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: 700;
+  color: rgb(106, 106, 106);
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.8);
+}
+
+.smartbanner-button:active,
+.smartbanner-button:hover {
+  color: rgb(170, 170, 170);
+}
+
+.smartbanner-ios {
+  background: rgb(242, 242, 242);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  line-height: 80px;
+}
+
+.smartbanner-ios .smartbanner-close {
+  border: 0;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  font-family: Arial;
+  color: rgb(136, 136, 136);
+  text-shadow: 0 1px 0 white;
+  -webkit-font-smoothing: none;
+}
+
+.smartbanner-ios .smartbanner-close:active,
+.smartbanner-ios .smartbanner-close:hover {
+  color: rgb(136, 136, 136);
+}
+
+.smartbanner-ios .smartbanner-icon {
+  background-size: cover;
+}
+
+.smartbanner-ios .smartbanner-info {
+  color: rgb(106, 106, 106);
+  text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.8);
+  font-weight: 300;
+}
+
+.smartbanner-ios .smartbanner-title {
+  color: rgb(77, 77, 77);
+  font-weight: 500;
+}
+
+.smartbanner-ios .smartbanner-button {
+  padding: 0 10px;
+  font-size: 15px;
+  min-width: 10%;
+  font-weight: 400;
+  color: rgb(12, 113, 253);
+}
+
+.smartbanner-ios .smartbanner-button:active,
+.smartbanner-ios .smartbanner-button:hover {
+  background: rgb(242, 242, 242);
+}
+
+.smartbanner-android {
+  background: rgb(61, 61, 61)
+    url('data:image/gif;base64, R0lGODlhCAAIAIABAFVVVf ///yH5BAEHAAEALAAAAAAIAAgAAAINRG4XudroGJBRsYcxKAA7');
+  box-shadow: inset 0 4px 0 rgb(136, 177, 49);
+  line-height: 82px;
+}
+
+.smartbanner-android .smartbanner-close {
+  border: 0;
+  max-width: 17px;
+  width: 100%;
+  height: 17px;
+  line-height: 17px;
+  margin-right: 7px;
+  color: rgb(177, 177, 179);
+  background: rgb(28, 30, 33);
+  text-shadow: 0 1px 1px black;
+  text-decoration: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8),
+    0 1px 1px hsla(0, 0%, 100%, 0.3);
+  cursor: pointer;
+}
+
+.smartbanner-android .smartbanner-close:active,
+.smartbanner-android .smartbanner-close:hover {
+  color: rgb(238, 238, 238);
+}
+
+.smartbanner-android .smartbanner-icon {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.smartbanner-android .smartbanner-info {
+  color: rgb(204, 204, 204);
+  text-shadow: 0 1px 2px black;
+}
+
+.smartbanner-android .smartbanner-title {
+  color: white;
+  font-weight: 700;
+}
+
+.smartbanner-android .smartbanner-button {
+  min-width: 12%;
+  color: rgb(209, 209, 209);
+  font-weight: 700;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: 0 0 0 1px rgb(51, 51, 51), 0 0 0 2px rgb(221, 220, 220);
+}
+
+.smartbanner-android .smartbanner-button:active,
+.smartbanner-android .smartbanner-button:hover {
+  background: none;
+}
+
+.smartbanner-android .smartbanner-button-text {
+  text-align: center;
+  display: block;
+  padding: 0 10px;
+  background: rgb(66, 182, 201);
+  background: linear-gradient(180deg, rgb(66, 182, 201), rgb(57, 169, 187));
+  text-transform: none;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.smartbanner-android .smartbanner-button-text:active,
+.smartbanner-android .smartbanner-button-text:hover {
+  background: rgb(42, 199, 225);
+}
+
+.smartbanner-kindle,
+.smartbanner-windows {
+  background: rgb(244, 244, 244);
+  background: linear-gradient(180deg, rgb(244, 244, 244), rgb(205, 205, 205));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  line-height: 80px;
+}
+
+.smartbanner-kindle .smartbanner-close,
+.smartbanner-windows .smartbanner-close {
+  border: 0;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  color: rgb(136, 136, 136);
+  text-shadow: 0 1px 0 white;
+}
+
+.smartbanner-kindle .smartbanner-close:active,
+.smartbanner-kindle .smartbanner-close:hover,
+.smartbanner-windows .smartbanner-close:active,
+.smartbanner-windows .smartbanner-close:hover {
+  color: rgb(170, 170, 170);
+}
+
+.smartbanner-kindle .smartbanner-icon,
+.smartbanner-windows .smartbanner-icon {
+  background: rgba(0, 0, 0, 0.6);
+  background-size: cover;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.smartbanner-kindle .smartbanner-info,
+.smartbanner-windows .smartbanner-info {
+  color: rgb(106, 106, 106);
+  text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.8);
+}
+
+.smartbanner-kindle .smartbanner-title,
+.smartbanner-windows .smartbanner-title {
+  color: rgb(77, 77, 77);
+  font-weight: 700;
+}
+
+.smartbanner-kindle .smartbanner-button,
+.smartbanner-windows .smartbanner-button {
+  padding: 0 10px;
+  min-width: 10%;
+  color: rgb(106, 106, 106);
+  background: rgb(239, 239, 239);
+  background: linear-gradient(180deg, rgb(239, 239, 239), gainsboro);
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgb(191, 191, 191), 0 1px 0 hsla(0, 0%, 100%, 0.6),
+    inset 0 2px 0 hsla(0, 0%, 100%, 0.7);
+}
+
+.smartbanner-kindle .smartbanner-button:active,
+.smartbanner-kindle .smartbanner-button:hover,
+.smartbanner-windows .smartbanner-button:active,
+.smartbanner-windows .smartbanner-button:hover {
+  background: gainsboro;
+  background: linear-gradient(180deg, gainsboro, rgb(239, 239, 239));
+}
